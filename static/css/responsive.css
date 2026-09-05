@@ -1,0 +1,1174 @@
+/* ============================================================
+   FinGuard AI
+   Global Responsive Stylesheet
+   responsive.css
+   ============================================================ */
+
+
+/* ============================================================
+   01. GLOBAL RESPONSIVE FOUNDATION
+   ============================================================ */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+table {
+    max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+
+/* ============================================================
+   02. LARGE DESKTOP
+   ============================================================ */
+
+@media (min-width: 1440px) {
+
+    .navbar-container {
+        width: min(1380px, 94%);
+    }
+
+    .hero-container {
+        width: min(1380px, 94%);
+    }
+
+    .features-section,
+    .workflow-section {
+        width: min(1380px, 94%);
+    }
+
+    .cta-section {
+        width: min(1380px, 94%);
+    }
+
+    .footer-container {
+        width: min(1380px, 94%);
+    }
+
+    .page-container {
+        width: min(1450px, 94%);
+    }
+}
+
+
+/* ============================================================
+   03. DESKTOP / LAPTOP
+   ============================================================ */
+
+@media (max-width: 1200px) {
+
+    .navbar-container {
+        width: 94%;
+    }
+
+    .hero-container {
+        width: 94%;
+        gap: 45px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(40px, 5vw, 58px);
+    }
+
+    .features-grid {
+        gap: 16px;
+    }
+
+    .workflow-grid {
+        gap: 17px;
+    }
+
+    .cta-section {
+        width: 94%;
+    }
+
+    .page-container {
+        width: 94%;
+    }
+
+    .container {
+        width: 94%;
+    }
+}
+
+
+/* ============================================================
+   04. TABLET LANDSCAPE
+   ============================================================ */
+
+@media (max-width: 1024px) {
+
+    /* ---------- Navbar ---------- */
+
+    .navbar-container {
+        gap: 15px;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .nav-links {
+        gap: 2px;
+    }
+
+    .nav-links a {
+        padding:
+            9px 10px;
+
+        font-size:
+            12px;
+    }
+
+
+    /* ---------- Hero ---------- */
+
+    .hero-section {
+        padding:
+            75px 0 80px;
+    }
+
+    .hero-container {
+        grid-template-columns:
+            1fr;
+
+        text-align:
+            center;
+
+        gap:
+            30px;
+    }
+
+    .hero-content {
+        max-width:
+            780px;
+
+        margin:
+            auto;
+    }
+
+    .hero-description {
+        margin-left:
+            auto;
+
+        margin-right:
+            auto;
+    }
+
+    .hero-actions {
+        justify-content:
+            center;
+    }
+
+    .hero-visual {
+        width:
+            min(700px, 100%);
+
+        min-height:
+            410px;
+
+        margin:
+            auto;
+    }
+
+
+    /* ---------- Feature Sections ---------- */
+
+    .features-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .workflow-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .workflow-grid::before {
+        display:
+            none;
+    }
+
+
+    /* ---------- CTA ---------- */
+
+    .cta-container {
+        gap:
+            25px;
+    }
+
+
+    /* ---------- Generic Grid ---------- */
+
+    .grid-4,
+    .stats-grid,
+    .cards-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+/* ============================================================
+   05. TABLET PORTRAIT
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    /* ---------- Navbar ---------- */
+
+    .navbar {
+        height:
+            auto;
+
+        min-height:
+            70px;
+
+        padding:
+            10px 0;
+    }
+
+    .navbar-container {
+        flex-wrap:
+            wrap;
+
+        justify-content:
+            center;
+
+        row-gap:
+            8px;
+    }
+
+    .brand {
+        width:
+            100%;
+
+        justify-content:
+            center;
+    }
+
+    .nav-links {
+        width:
+            100%;
+
+        justify-content:
+            center;
+
+        flex-wrap:
+            wrap;
+    }
+
+
+    /* ---------- Main ---------- */
+
+    .main-content {
+        min-height:
+            calc(100vh - 70px);
+    }
+
+
+    /* ---------- Hero ---------- */
+
+    .hero-section {
+        padding:
+            65px 0 70px;
+    }
+
+    .hero-content h1 {
+        font-size:
+            clamp(38px, 7vw, 52px);
+
+        letter-spacing:
+            -1.8px;
+    }
+
+    .hero-description {
+        font-size:
+            15px;
+    }
+
+
+    /* ---------- Hero Visual ---------- */
+
+    .hero-visual {
+        min-height:
+            390px;
+    }
+
+
+    /* ---------- Common Containers ---------- */
+
+    .features-section,
+    .workflow-section {
+        padding-top:
+            75px;
+
+        padding-bottom:
+            75px;
+    }
+
+    .page-container {
+        padding:
+            28px 0;
+    }
+
+
+    /* ---------- Forms ---------- */
+
+    .form-row,
+    .form-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    /* ---------- Prediction ---------- */
+
+    .prediction-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .prediction-container {
+        width:
+            94%;
+
+        padding:
+            25px 0;
+    }
+
+
+    /* ---------- Generic two-column ---------- */
+
+    .two-column,
+    .content-grid,
+    .analytics-grid,
+    .analysis-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    /* ---------- Tables ---------- */
+
+    .table-wrapper,
+    .transactions-table-wrapper {
+        overflow-x:
+            auto;
+
+        -webkit-overflow-scrolling:
+            touch;
+    }
+
+    .table,
+    .transactions-table {
+        min-width:
+            650px;
+    }
+}
+
+
+/* ============================================================
+   06. MOBILE LANDSCAPE / LARGE MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    /* ---------- Navbar ---------- */
+
+    .navbar-container {
+        width:
+            94%;
+    }
+
+    .brand {
+        font-size:
+            18px;
+    }
+
+    .brand-icon {
+        width:
+            34px;
+
+        height:
+            34px;
+    }
+
+    .nav-links {
+        gap:
+            2px;
+    }
+
+    .nav-links a {
+        padding:
+            7px 8px;
+
+        font-size:
+            11px;
+    }
+
+
+    /* ---------- Hero ---------- */
+
+    .hero-section {
+        padding:
+            55px 0 60px;
+    }
+
+    .hero-content h1 {
+        font-size:
+            42px;
+
+        letter-spacing:
+            -1.5px;
+    }
+
+    .hero-description {
+        font-size:
+            14px;
+
+        line-height:
+            1.75;
+    }
+
+    .hero-actions {
+        flex-direction:
+            column;
+
+        width:
+            100%;
+    }
+
+    .hero-actions .btn {
+        width:
+            min(100%, 340px);
+    }
+
+
+    /* ---------- Hero Visual ---------- */
+
+    .hero-visual {
+        min-height:
+            350px;
+    }
+
+    .security-card {
+        left:
+            0;
+
+        transform:
+            scale(0.82);
+
+        transform-origin:
+            left top;
+    }
+
+    .fraud-card {
+        right:
+            0;
+
+        width:
+            290px;
+
+        transform:
+            scale(0.82);
+
+        transform-origin:
+            right bottom;
+    }
+
+
+    /* ---------- Features ---------- */
+
+    .features-grid,
+    .workflow-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .feature-card {
+        min-height:
+            auto;
+    }
+
+
+    /* ---------- CTA ---------- */
+
+    .cta-section {
+        padding:
+            35px 25px;
+
+        margin-top:
+            65px;
+
+        margin-bottom:
+            65px;
+    }
+
+    .cta-container {
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+    }
+
+    .cta-container .btn {
+        width:
+            100%;
+    }
+
+
+    /* ---------- Generic grids ---------- */
+
+    .grid-4,
+    .grid-3,
+    .grid-2,
+    .stats-grid,
+    .cards-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    /* ---------- Form ---------- */
+
+    .form-row,
+    .form-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .form-group.full-width {
+        grid-column:
+            auto;
+    }
+
+
+    /* ---------- Buttons ---------- */
+
+    .btn {
+        min-height:
+            45px;
+
+        padding:
+            0 18px;
+    }
+}
+
+
+/* ============================================================
+   07. MOBILE PORTRAIT
+   ============================================================ */
+
+@media (max-width: 560px) {
+
+    /* ========================================================
+       NAVBAR
+       ======================================================== */
+
+    .navbar {
+        padding:
+            10px 0 12px;
+    }
+
+    .navbar-container {
+        width:
+            96%;
+
+        gap:
+            9px;
+    }
+
+    .brand {
+        font-size:
+            17px;
+    }
+
+    .brand-icon {
+        width:
+            32px;
+
+        height:
+            32px;
+    }
+
+    .nav-links {
+        justify-content:
+            center;
+
+        gap:
+            1px;
+    }
+
+    .nav-links a {
+        padding:
+            6px 7px;
+
+        font-size:
+            10px;
+
+        border-radius:
+            8px;
+    }
+
+    .nav-links a::after {
+        left:
+            8px;
+
+        right:
+            8px;
+
+        bottom:
+            3px;
+    }
+
+
+    /* ========================================================
+       HERO
+       ======================================================== */
+
+    .hero-section {
+        padding:
+            48px 0 55px;
+    }
+
+    .hero-container {
+        width:
+            92%;
+    }
+
+    .hero-badge {
+        font-size:
+            11px;
+
+        padding:
+            7px 11px;
+    }
+
+    .hero-content h1 {
+        font-size:
+            35px;
+
+        letter-spacing:
+            -1.3px;
+
+        line-height:
+            1.08;
+    }
+
+    .hero-description {
+        font-size:
+            13px;
+
+        line-height:
+            1.75;
+    }
+
+    .hero-actions .btn {
+        width:
+            100%;
+    }
+
+
+    /* ========================================================
+       HERO VISUAL
+       ======================================================== */
+
+    .hero-visual {
+        min-height:
+            315px;
+
+        background-size:
+            92%;
+    }
+
+    .security-card {
+        top:
+            0;
+
+        left:
+            0;
+
+        min-width:
+            205px;
+
+        padding:
+            13px;
+
+        transform:
+            scale(0.72);
+
+        transform-origin:
+            left top;
+    }
+
+    .fraud-card {
+        right:
+            0;
+
+        bottom:
+            0;
+
+        width:
+            265px;
+
+        padding:
+            18px;
+
+        transform:
+            scale(0.72);
+
+        transform-origin:
+            right bottom;
+    }
+
+    .meter-value {
+        font-size:
+            40px;
+    }
+
+
+    /* ========================================================
+       SECTIONS
+       ======================================================== */
+
+    .features-section,
+    .workflow-section {
+        width:
+            92%;
+
+        padding-top:
+            60px;
+
+        padding-bottom:
+            60px;
+    }
+
+    .section-header {
+        margin-bottom:
+            35px;
+    }
+
+    .section-header h2 {
+        font-size:
+            28px;
+    }
+
+    .section-header p {
+        font-size:
+            13px;
+    }
+
+
+    /* ========================================================
+       CARDS
+       ======================================================== */
+
+    .card,
+    .stat-card {
+        padding:
+            18px;
+
+        border-radius:
+            15px;
+    }
+
+
+    /* ========================================================
+       PREDICTION
+       ======================================================== */
+
+    .prediction-container {
+        width:
+            94%;
+
+        padding:
+            20px 0 30px;
+    }
+
+    .prediction-header {
+        margin-bottom:
+            20px;
+    }
+
+    .prediction-header h1 {
+        font-size:
+            24px;
+    }
+
+    .prediction-header p {
+        font-size:
+            12px;
+    }
+
+    .prediction-card,
+    .prediction-result {
+        padding:
+            18px;
+
+        border-radius:
+            15px;
+    }
+
+    .prediction-card-header {
+        gap:
+            10px;
+
+        padding-bottom:
+            15px;
+
+        margin-bottom:
+            17px;
+    }
+
+    .prediction-card-icon {
+        width:
+            40px;
+
+        height:
+            40px;
+    }
+
+    .prediction-card-header h2,
+    .result-header h2 {
+        font-size:
+            16px;
+    }
+
+    .prediction-card-header p,
+    .result-header p {
+        font-size:
+            10px;
+    }
+
+    .form-group input,
+    .form-group select {
+        height:
+            44px;
+
+        font-size:
+            12px;
+    }
+
+    .predict-button {
+        height:
+            46px;
+    }
+
+    .risk-score {
+        font-size:
+            40px;
+    }
+
+    .feature-row {
+        grid-template-columns:
+            85px minmax(0, 1fr) 42px;
+    }
+
+
+    /* ========================================================
+       TABLES
+       ======================================================== */
+
+    .table-wrapper {
+        border-radius:
+            12px;
+    }
+
+    .table,
+    .transactions-table {
+        min-width:
+            620px;
+    }
+
+    .table th,
+    .table td,
+    .transactions-table th,
+    .transactions-table td {
+        padding:
+            11px 12px;
+    }
+
+
+    /* ========================================================
+       FOOTER
+       ======================================================== */
+
+    .footer {
+        padding:
+            35px 0 22px;
+    }
+
+    .footer-container {
+        width:
+            92%;
+    }
+
+    .footer-container > p {
+        font-size:
+            11px;
+    }
+
+    .developer-credit {
+        font-size:
+            12px;
+    }
+}
+
+
+/* ============================================================
+   08. SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 420px) {
+
+    .nav-links a {
+        padding:
+            6px;
+
+        font-size:
+            9px;
+    }
+
+    .hero-content h1 {
+        font-size:
+            31px;
+    }
+
+    .hero-description {
+        font-size:
+            12px;
+    }
+
+    .hero-visual {
+        min-height:
+            285px;
+    }
+
+    .security-card {
+        transform:
+            scale(0.64);
+    }
+
+    .fraud-card {
+        width:
+            245px;
+
+        transform:
+            scale(0.64);
+    }
+
+    .section-header h2 {
+        font-size:
+            25px;
+    }
+
+    .cta-section {
+        width:
+            92%;
+
+        padding:
+            28px 20px;
+
+        border-radius:
+            20px;
+    }
+
+    .cta-container h2 {
+        font-size:
+            25px;
+    }
+
+    .page-container {
+        width:
+            94%;
+
+        padding:
+            22px 0;
+    }
+}
+
+
+/* ============================================================
+   09. VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 350px) {
+
+    .nav-links {
+        gap:
+            0;
+    }
+
+    .nav-links a {
+        padding:
+            5px 4px;
+
+        font-size:
+            8px;
+    }
+
+    .hero-content h1 {
+        font-size:
+            28px;
+    }
+
+    .hero-visual {
+        min-height:
+            260px;
+    }
+
+    .security-card {
+        transform:
+            scale(0.57);
+    }
+
+    .fraud-card {
+        transform:
+            scale(0.57);
+    }
+
+    .prediction-card,
+    .prediction-result {
+        padding:
+            15px;
+    }
+}
+
+
+/* ============================================================
+   10. LANDSCAPE PHONE
+   ============================================================ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+
+    .hero-section {
+        padding:
+            35px 0 45px;
+    }
+
+    .hero-visual {
+        min-height:
+            280px;
+    }
+
+    .hero-content h1 {
+        font-size:
+            35px;
+    }
+}
+
+
+/* ============================================================
+   11. TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+
+    .nav-links a:hover,
+    .feature-card:hover,
+    .workflow-step:hover,
+    .quick-action:hover,
+    .kpi-card:hover {
+        transform:
+            none;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform:
+            none;
+    }
+
+    .nav-links a {
+        -webkit-tap-highlight-color:
+            transparent;
+    }
+
+    button,
+    a,
+    select {
+        touch-action:
+            manipulation;
+    }
+}
+
+
+/* ============================================================
+   12. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior:
+            auto !important;
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
+
+
+/* ============================================================
+   13. PRINT
+   ============================================================ */
+
+@media print {
+
+    .navbar,
+    .nav-links,
+    .hero-actions,
+    .footer {
+        display:
+            none !important;
+    }
+
+    body {
+        background:
+            #ffffff !important;
+    }
+
+    .main-content {
+        min-height:
+            auto;
+    }
+
+    .card,
+    .prediction-card,
+    .prediction-result,
+    .chart-card {
+        box-shadow:
+            none !important;
+
+        border:
+            1px solid #cbd5e1 !important;
+    }
+}

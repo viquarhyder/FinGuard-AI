@@ -1,0 +1,295 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found | FinGuard AI{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/404.css') }}?v=20"
+>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="fg404-page">
+
+    <div class="fg404-background">
+        <div class="fg404-grid"></div>
+        <div class="fg404-orb fg404-orb-one"></div>
+        <div class="fg404-orb fg404-orb-two"></div>
+    </div>
+
+
+    <main class="fg404-container">
+
+        <!-- =====================================================
+             LEFT / VISUAL
+        ====================================================== -->
+
+        <section class="fg404-visual">
+
+            <div class="fg404-visual-glow"></div>
+
+            <div class="fg404-orbit orbit-one"></div>
+            <div class="fg404-orbit orbit-two"></div>
+
+            <div class="fg404-shield-wrap">
+
+                <div class="fg404-shield-pulse"></div>
+
+                <div class="fg404-shield">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/shield.svg'
+                        ) }}"
+                        alt="FinGuard AI Security"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="fg404-number">
+                404
+            </div>
+
+
+            <div class="fg404-signal">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTENT
+        ====================================================== -->
+
+        <section class="fg404-content">
+
+            <div class="fg404-eyebrow">
+
+                <span class="fg404-eyebrow-dot"></span>
+
+                FINGUARD AI
+
+                <span class="fg404-divider"></span>
+
+                NAVIGATION ERROR
+
+            </div>
+
+
+            <h1>
+                Page
+                <span>Not Found</span>
+            </h1>
+
+
+            <p class="fg404-description">
+
+                The requested security intelligence page could not
+                be located. It may have been moved, removed, or the
+                address may be incorrect.
+
+            </p>
+
+
+            <!-- =================================================
+                 ERROR INFORMATION
+            ================================================== -->
+
+            <div class="fg404-info-grid">
+
+                <div class="fg404-info-card">
+
+                    <div class="fg404-info-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Security Engine
+                        </strong>
+
+                        <span>
+                            Operational
+                        </span>
+
+                    </div>
+
+                    <i class="online-dot"></i>
+
+                </div>
+
+
+                <div class="fg404-info-card">
+
+                    <div class="fg404-info-icon blue">
+
+                        <span>
+                            404
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Response Status
+                        </strong>
+
+                        <span>
+                            Resource unavailable
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ACTIONS
+            ================================================== -->
+
+            <div class="fg404-actions">
+
+                <a
+                    href="{{ url_for('home') }}"
+                    class="fg404-primary"
+                >
+
+                    <span class="fg404-btn-icon">
+                        ←
+                    </span>
+
+                    <span>
+                        Back to Home
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="fg404-secondary"
+                >
+
+                    Open Dashboard
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 STATUS
+            ================================================== -->
+
+            <div class="fg404-status">
+
+                <div class="fg404-status-icon">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/secure.svg'
+                        ) }}"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div class="fg404-status-text">
+
+                    <strong>
+                        FinGuard AI is operational
+                    </strong>
+
+                    <span>
+                        Your security environment remains protected.
+                    </span>
+
+                </div>
+
+
+                <div class="fg404-status-live">
+
+                    <i></i>
+
+                    SYSTEM ONLINE
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="fg404-footer">
+
+        <div>
+
+            <span class="fg404-footer-dot"></span>
+
+            FinGuard AI Security Engine
+
+        </div>
+
+        <span>
+            Protected Environment
+        </span>
+
+        <span>
+            © 2026 FinGuard AI
+        </span>
+
+    </footer>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/404.js'
+    ) }}?v=20"
+></script>
+
+{% endblock %}

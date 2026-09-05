@@ -1,0 +1,1125 @@
+{% extends "base.html" %}
+
+{% block title %}About FinGuard AI{% endblock %}
+
+{% block extra_css %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/about.css') }}?v=30"
+>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="about-page">
+
+    <div class="about-container">
+
+
+        <!-- =====================================================
+             PREMIUM HERO
+        ====================================================== -->
+
+        <section class="about-hero">
+
+            <div class="about-hero-grid"></div>
+
+            <div class="about-hero-orb orb-a"></div>
+            <div class="about-hero-orb orb-b"></div>
+
+
+            <div class="about-hero-content">
+
+                <div class="about-hero-label">
+
+                    <span class="about-label-dot"></span>
+
+                    FINANCIAL SECURITY INTELLIGENCE
+
+                    <span class="about-live-badge">
+                        LIVE PLATFORM
+                    </span>
+
+                </div>
+
+
+                <h1>
+                    FinGuard <span>AI</span>
+                </h1>
+
+
+                <div class="about-title-line"></div>
+
+
+                <p>
+                    An intelligent financial security platform designed
+                    to analyze transactions, detect suspicious behavior
+                    and transform machine-learning signals into
+                    actionable risk intelligence.
+                </p>
+
+
+                <div class="about-hero-tags">
+
+                    <span>
+                        <i></i>
+                        AI Fraud Detection
+                    </span>
+
+                    <span>
+                        <i></i>
+                        Anomaly Intelligence
+                    </span>
+
+                    <span>
+                        <i></i>
+                        Risk Assessment
+                    </span>
+
+                </div>
+
+
+                <div class="about-hero-actions">
+
+                    <a
+                        href="{{ url_for('prediction') }}"
+                        class="about-primary-btn"
+                    >
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                        Analyze Transaction
+
+                        <span>→</span>
+
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('dashboard') }}"
+                        class="about-secondary-btn"
+                    >
+                        Open Dashboard
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SECURITY CORE VISUAL
+            ================================================== -->
+
+            <div class="about-hero-visual">
+
+                <div class="about-visual-pulse"></div>
+
+                <div class="about-orbit orbit-outer">
+                    <span class="orbit-dot dot-one"></span>
+                    <span class="orbit-dot dot-two"></span>
+                </div>
+
+                <div class="about-orbit orbit-middle"></div>
+
+                <div class="about-orbit orbit-inner"></div>
+
+
+                <div class="about-security-core">
+
+                    <div class="about-core-glow"></div>
+
+                    <div class="about-core-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <strong>
+                        AI
+                    </strong>
+
+                    <span>
+                        SECURITY ENGINE
+                    </span>
+
+                    <div class="about-core-status">
+                        <i></i>
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+                <div class="about-floating-card floating-top">
+
+                    <span class="floating-icon blue">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </span>
+
+                    <div>
+                        <strong>
+                            AI Detection
+                        </strong>
+
+                        <small>
+                            Engine Online
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <div class="about-floating-card floating-bottom">
+
+                    <span class="floating-icon green">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/secure.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </span>
+
+                    <div>
+                        <strong>
+                            Protected
+                        </strong>
+
+                        <small>
+                            Secure Environment
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PLATFORM INTELLIGENCE CARDS
+        ====================================================== -->
+
+        <section class="about-intelligence-grid">
+
+
+            <article class="about-intelligence-card blue">
+
+                <div class="about-intelligence-top">
+
+                    <div class="about-intelligence-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <span>
+                        01
+                    </span>
+
+                </div>
+
+
+                <strong>
+                    AI Powered
+                </strong>
+
+                <p>
+                    Machine-learning intelligence for
+                    financial risk analysis.
+                </p>
+
+                <div class="about-card-arrow">
+                    →
+                </div>
+
+            </article>
+
+
+
+            <article class="about-intelligence-card purple">
+
+                <div class="about-intelligence-top">
+
+                    <div class="about-intelligence-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <span>
+                        02
+                    </span>
+
+                </div>
+
+
+                <strong>
+                    Dual Detection
+                </strong>
+
+                <p>
+                    Fraud prediction combined with
+                    behavioral anomaly detection.
+                </p>
+
+                <div class="about-card-arrow">
+                    →
+                </div>
+
+            </article>
+
+
+
+            <article class="about-intelligence-card green">
+
+                <div class="about-intelligence-top">
+
+                    <div class="about-intelligence-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/secure.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <span>
+                        03
+                    </span>
+
+                </div>
+
+
+                <strong>
+                    Real-Time Risk
+                </strong>
+
+                <p>
+                    Convert model signals into clear
+                    security decisions.
+                </p>
+
+                <div class="about-card-arrow">
+                    →
+                </div>
+
+            </article>
+
+
+
+            <article class="about-intelligence-card orange">
+
+                <div class="about-intelligence-top">
+
+                    <div class="about-intelligence-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/fraud.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <span>
+                        04
+                    </span>
+
+                </div>
+
+
+                <strong>
+                    Fraud Focused
+                </strong>
+
+                <p>
+                    Designed around identifying suspicious
+                    financial activity.
+                </p>
+
+                <div class="about-card-arrow">
+                    →
+                </div>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PLATFORM OVERVIEW + DETECTION PIPELINE
+        ====================================================== -->
+
+        <section class="about-main-grid">
+
+
+            <!-- PLATFORM OVERVIEW -->
+
+            <article class="about-panel about-overview-panel">
+
+                <div class="about-panel-accent"></div>
+
+
+                <div class="about-panel-header">
+
+                    <div class="about-panel-icon blue">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            PLATFORM OVERVIEW
+                        </span>
+
+                        <h2>
+                            Intelligent Transaction Protection
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <p class="about-panel-description">
+
+                    FinGuard AI combines machine-learning based fraud
+                    prediction with anomaly detection to evaluate
+                    transaction behavior and produce a unified security
+                    assessment.
+
+                </p>
+
+
+                <div class="about-capabilities">
+
+
+                    <div
+                        class="about-capability"
+                        tabindex="0"
+                    >
+
+                        <span class="capability-number">
+                            01
+                        </span>
+
+                        <span class="about-check">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Fraud Prediction
+                            </strong>
+
+                            <p>
+                                Estimates the likelihood of fraudulent
+                                transaction behavior.
+                            </p>
+
+                        </div>
+
+                        <span class="capability-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+
+                    <div
+                        class="about-capability"
+                        tabindex="0"
+                    >
+
+                        <span class="capability-number">
+                            02
+                        </span>
+
+                        <span class="about-check">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Anomaly Detection
+                            </strong>
+
+                            <p>
+                                Identifies unusual transaction patterns
+                                that may require investigation.
+                            </p>
+
+                        </div>
+
+                        <span class="capability-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+
+                    <div
+                        class="about-capability"
+                        tabindex="0"
+                    >
+
+                        <span class="capability-number">
+                            03
+                        </span>
+
+                        <span class="about-check">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Unified Risk Scoring
+                            </strong>
+
+                            <p>
+                                Converts model signals into an intuitive
+                                0–100 transaction risk score.
+                            </p>
+
+                        </div>
+
+                        <span class="capability-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- DETECTION PIPELINE -->
+
+            <article class="about-panel about-pipeline-panel">
+
+                <div class="about-panel-accent purple"></div>
+
+
+                <div class="about-panel-header">
+
+                    <div class="about-panel-icon purple">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            DETECTION PIPELINE
+                        </span>
+
+                        <h2>
+                            How FinGuard Works
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-pipeline">
+
+
+                    <div
+                        class="pipeline-step"
+                        tabindex="0"
+                        data-pipeline-step="1"
+                    >
+
+                        <div class="pipeline-number">
+                            01
+                        </div>
+
+                        <div class="pipeline-step-content">
+
+                            <strong>
+                                Transaction Input
+                            </strong>
+
+                            <small>
+                                Financial transaction features
+                            </small>
+
+                        </div>
+
+                        <span class="pipeline-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div class="pipeline-connector"></div>
+
+
+                    <div
+                        class="pipeline-step"
+                        tabindex="0"
+                        data-pipeline-step="2"
+                    >
+
+                        <div class="pipeline-number">
+                            02
+                        </div>
+
+                        <div class="pipeline-step-content">
+
+                            <strong>
+                                Fraud Model
+                            </strong>
+
+                            <small>
+                                Fraud probability estimation
+                            </small>
+
+                        </div>
+
+                        <span class="pipeline-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div class="pipeline-connector"></div>
+
+
+                    <div
+                        class="pipeline-step"
+                        tabindex="0"
+                        data-pipeline-step="3"
+                    >
+
+                        <div class="pipeline-number">
+                            03
+                        </div>
+
+                        <div class="pipeline-step-content">
+
+                            <strong>
+                                Anomaly Engine
+                            </strong>
+
+                            <small>
+                                Behavioral anomaly detection
+                            </small>
+
+                        </div>
+
+                        <span class="pipeline-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <div class="pipeline-connector"></div>
+
+
+                    <div
+                        class="pipeline-step"
+                        tabindex="0"
+                        data-pipeline-step="4"
+                    >
+
+                        <div class="pipeline-number">
+                            04
+                        </div>
+
+                        <div class="pipeline-step-content">
+
+                            <strong>
+                                Risk Decision
+                            </strong>
+
+                            <small>
+                                Unified security assessment
+                            </small>
+
+                        </div>
+
+                        <span class="pipeline-arrow">
+                            ✓
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             TECHNOLOGY STACK
+        ====================================================== -->
+
+        <section class="about-technology-panel">
+
+            <div class="about-panel-header">
+
+                <div class="about-panel-icon green">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/analytics.svg'
+                        ) }}"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        TECHNOLOGY STACK
+                    </span>
+
+                    <h2>
+                        Built for Intelligent Fraud Analysis
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="technology-grid">
+
+
+                <div class="technology-item" tabindex="0">
+
+                    <div class="technology-logo blue">
+                        F
+                    </div>
+
+                    <div>
+                        <strong>
+                            Flask
+                        </strong>
+
+                        <span>
+                            Application Layer
+                        </span>
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </div>
+
+
+
+                <div class="technology-item" tabindex="0">
+
+                    <div class="technology-logo yellow">
+                        Py
+                    </div>
+
+                    <div>
+                        <strong>
+                            Python
+                        </strong>
+
+                        <span>
+                            AI & Data Processing
+                        </span>
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </div>
+
+
+
+                <div class="technology-item" tabindex="0">
+
+                    <div class="technology-logo purple">
+                        X
+                    </div>
+
+                    <div>
+                        <strong>
+                            XGBoost
+                        </strong>
+
+                        <span>
+                            Fraud Prediction
+                        </span>
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </div>
+
+
+
+                <div class="technology-item" tabindex="0">
+
+                    <div class="technology-logo red">
+                        IF
+                    </div>
+
+                    <div>
+                        <strong>
+                            Isolation Forest
+                        </strong>
+
+                        <span>
+                            Anomaly Detection
+                        </span>
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </div>
+
+
+
+                <div class="technology-item" tabindex="0">
+
+                    <div class="technology-logo green">
+                        Pd
+                    </div>
+
+                    <div>
+                        <strong>
+                            Pandas
+                        </strong>
+
+                        <span>
+                            Dataset Analytics
+                        </span>
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </div>
+
+
+
+                <div class="technology-item" tabindex="0">
+
+                    <div class="technology-logo cyan">
+                        NP
+                    </div>
+
+                    <div>
+                        <strong>
+                            NumPy
+                        </strong>
+
+                        <span>
+                            Numerical Processing
+                        </span>
+                    </div>
+
+                    <b>
+                        →
+                    </b>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SECURITY PRINCIPLES
+        ====================================================== -->
+
+        <section class="about-security-section">
+
+            <div class="about-section-heading">
+
+                <div>
+
+                    <span>
+                        SECURITY PRINCIPLES
+                    </span>
+
+                    <h2>
+                        Intelligence Built Around Risk
+                    </h2>
+
+                </div>
+
+                <p>
+                    FinGuard AI focuses on turning complex detection
+                    signals into understandable security outcomes.
+                </p>
+
+            </div>
+
+
+            <div class="about-security-grid">
+
+
+                <article class="about-security-card blue">
+
+                    <div class="security-card-top">
+
+                        <div class="security-card-icon">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/shield.svg'
+                                ) }}"
+                                alt=""
+                            >
+
+                        </div>
+
+                        <span>
+                            01
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Risk First
+                    </h3>
+
+                    <p>
+                        Every analyzed transaction receives a clear,
+                        interpretable risk assessment.
+                    </p>
+
+                    <div class="security-card-line"></div>
+
+                </article>
+
+
+
+                <article class="about-security-card red">
+
+                    <div class="security-card-top">
+
+                        <div class="security-card-icon">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/fraud.svg'
+                                ) }}"
+                                alt=""
+                            >
+
+                        </div>
+
+                        <span>
+                            02
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Fraud Focused
+                    </h3>
+
+                    <p>
+                        Detection logic is designed around identifying
+                        suspicious financial activity.
+                    </p>
+
+                    <div class="security-card-line"></div>
+
+                </article>
+
+
+
+                <article class="about-security-card green">
+
+                    <div class="security-card-top">
+
+                        <div class="security-card-icon">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/secure.svg'
+                                ) }}"
+                                alt=""
+                            >
+
+                        </div>
+
+                        <span>
+                            03
+                        </span>
+
+                    </div>
+
+                    <h3>
+                        Actionable Results
+                    </h3>
+
+                    <p>
+                        Model outputs are converted into practical
+                        decisions such as safe, review or potential fraud.
+                    </p>
+
+                    <div class="security-card-line"></div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SYSTEM STATUS
+        ====================================================== -->
+
+        <section class="about-system-status">
+
+            <div class="about-system-icon">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/shield.svg'
+                    ) }}"
+                    alt=""
+                >
+
+            </div>
+
+
+            <div class="about-system-content">
+
+                <strong>
+                    FinGuard AI Behavioral Security Engine
+                </strong>
+
+                <p>
+                    Intelligent financial security and fraud-risk
+                    analysis platform.
+                </p>
+
+            </div>
+
+
+            <div class="about-system-status-pill">
+
+                <span></span>
+
+                System Operational
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/about.js'
+    ) }}?v=30"
+></script>
+
+{% endblock %}

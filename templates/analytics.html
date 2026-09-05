@@ -1,0 +1,942 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics | FinGuard AI{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/analytics.css') }}?v=30">
+{% endblock %}
+
+{% block content %}
+
+<div class="analytics-page">
+
+    <div class="analytics-shell">
+
+        <!-- HERO -->
+        <section class="analytics-hero">
+
+            <div class="analytics-hero-grid"></div>
+            <div class="analytics-glow glow-blue"></div>
+            <div class="analytics-glow glow-purple"></div>
+
+            <div class="analytics-hero-content">
+
+                <div class="analytics-eyebrow">
+                    <span class="live-dot"></span>
+                    FINGUARD AI
+
+                    <b>LIVE ANALYTICS</b>
+                </div>
+
+                <h1>
+                    Intelligence <span>Analytics</span>
+                </h1>
+
+                <p>
+                    Transforming transaction data into actionable
+                    fraud, risk and behavioral intelligence.
+                </p>
+
+                <div class="analytics-hero-tags">
+                    <span>Risk Intelligence</span>
+                    <span>Fraud Detection</span>
+                    <span>Behavioral Signals</span>
+                </div>
+
+            </div>
+
+            <div class="analytics-hero-visual">
+
+                <div class="hero-orbit orbit-a"></div>
+                <div class="hero-orbit orbit-b"></div>
+
+                <div class="hero-core">
+
+                    <div class="hero-core-ring"></div>
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/analytics.svg'
+                        ) }}"
+                        alt=""
+                    >
+
+                </div>
+
+                <div class="hero-floating-card hero-float-one">
+                    <span>AVG RISK</span>
+
+                    <strong>
+                        {{ "%.1f"|format(
+                            analytics.average_risk|
+                            default(0, true)|float
+                        ) }}
+                    </strong>
+                </div>
+
+                <div class="hero-floating-card hero-float-two">
+                    <span>FRAUD RATE</span>
+
+                    <strong>
+                        {{ "%.2f"|format(
+                            analytics.fraud_rate|
+                            default(0, true)|float
+                        ) }}%
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- KPI -->
+        <section class="analytics-kpi-grid">
+
+            <article class="analytics-kpi kpi-blue">
+
+                <div class="kpi-icon">
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/analytics.svg'
+                        ) }}"
+                        alt=""
+                    >
+                </div>
+
+                <div class="kpi-copy">
+
+                    <span>DATASET RECORDS</span>
+
+                    <strong>
+                        {{ "{:,}".format(
+                            analytics.rows|
+                            default(0, true)|int
+                        ) }}
+                    </strong>
+
+                    <small>
+                        Total analyzed records
+                    </small>
+
+                </div>
+
+                <b class="kpi-index">01</b>
+
+            </article>
+
+
+            <article class="analytics-kpi kpi-red">
+
+                <div class="kpi-icon">
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/fraud.svg'
+                        ) }}"
+                        alt=""
+                    >
+                </div>
+
+                <div class="kpi-copy">
+
+                    <span>FRAUD DETECTED</span>
+
+                    <strong>
+                        {{ "{:,}".format(
+                            analytics.fraud_count|
+                            default(0, true)|int
+                        ) }}
+                    </strong>
+
+                    <small>
+                        Flagged transactions
+                    </small>
+
+                </div>
+
+                <b class="kpi-index">02</b>
+
+            </article>
+
+
+            <article class="analytics-kpi kpi-orange">
+
+                <div class="kpi-icon">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/warning.svg'
+                        ) }}"
+                        alt=""
+                        onerror="this.style.display='none'"
+                    >
+
+                    <em>!</em>
+
+                </div>
+
+                <div class="kpi-copy">
+
+                    <span>AVERAGE RISK</span>
+
+                    <strong>
+                        {{ "%.1f"|format(
+                            analytics.average_risk|
+                            default(0, true)|float
+                        ) }}
+                    </strong>
+
+                    <small>
+                        Aggregate risk score
+                    </small>
+
+                </div>
+
+                <b class="kpi-index">03</b>
+
+            </article>
+
+
+            <article class="analytics-kpi kpi-green">
+
+                <div class="kpi-icon">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/shield.svg'
+                        ) }}"
+                        alt=""
+                    >
+
+                </div>
+
+                <div class="kpi-copy">
+
+                    <span>ENGINE STATUS</span>
+
+                    <strong>
+                        {{ analytics.model_status|
+                           default("Offline", true) }}
+                    </strong>
+
+                    <small>
+                        Detection pipeline
+                    </small>
+
+                </div>
+
+                <b class="kpi-index">04</b>
+
+            </article>
+
+        </section>
+
+
+        <!-- HIGHLIGHTS -->
+        <section class="analytics-highlight-grid">
+
+            <article class="analytics-highlight fraud-highlight">
+
+                <div class="highlight-icon">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/fraud.svg'
+                        ) }}"
+                        alt=""
+                    >
+
+                </div>
+
+                <div>
+
+                    <span>FRAUD EXPOSURE</span>
+
+                    <strong>
+                        {{ "%.2f"|format(
+                            analytics.fraud_rate|
+                            default(0, true)|float
+                        ) }}%
+                    </strong>
+
+                    <p>
+                        {{ "{:,}".format(
+                            analytics.fraud_count|
+                            default(0, true)|int
+                        ) }}
+                        fraudulent records identified.
+                    </p>
+
+                </div>
+
+                <div class="highlight-line">
+
+                    <span
+                        style="width:
+                        {{ [
+                            analytics.fraud_rate|
+                            default(0, true)|float,
+                            100
+                        ]|min }}%;">
+                    </span>
+
+                </div>
+
+            </article>
+
+
+            <article class="analytics-highlight risk-highlight">
+
+                <div class="highlight-icon">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/shield.svg'
+                        ) }}"
+                        alt=""
+                    >
+
+                </div>
+
+                <div>
+
+                    <span>SECURITY POSTURE</span>
+
+                    <strong>
+                        {{ "%.1f"|format(
+                            analytics.average_risk|
+                            default(0, true)|float
+                        ) }}
+                    </strong>
+
+                    <p>
+                        Average environment risk across
+                        monitored activity.
+                    </p>
+
+                </div>
+
+                <div class="highlight-line">
+
+                    <span
+                        style="width:
+                        {{ [
+                            analytics.average_risk|
+                            default(0, true)|float,
+                            100
+                        ]|min }}%;">
+                    </span>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- CHARTS -->
+        <section class="analytics-chart-grid">
+
+            <!-- FRAUD -->
+            <article class="analytics-card chart-card">
+
+                <div class="analytics-card-header">
+
+                    <div class="analytics-card-title">
+
+                        <div class="section-icon blue">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/fraud.svg'
+                                ) }}"
+                                alt=""
+                            >
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                FRAUD DISTRIBUTION
+                            </span>
+
+                            <h2>
+                                Transaction Integrity
+                            </h2>
+
+                            <p>
+                                Legitimate versus fraudulent
+                                records.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <span class="analytics-badge blue-badge">
+                        LIVE
+                    </span>
+
+                </div>
+
+
+                <div class="chart-area doughnut-area">
+
+                    <canvas id="fraudChart"></canvas>
+
+                    <div class="doughnut-center">
+
+                        <strong>
+                            {{ "{:,}".format(
+                                analytics.rows|
+                                default(0, true)|int
+                            ) }}
+                        </strong>
+
+                        <span>
+                            RECORDS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-legend">
+
+                    <div>
+
+                        <i class="legend-legitimate"></i>
+
+                        <span>
+                            Legitimate
+                        </span>
+
+                        <b>
+                            {{ "{:,}".format(
+                                analytics.legitimate_count|
+                                default(0, true)|int
+                            ) }}
+                        </b>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="legend-fraud"></i>
+
+                        <span>
+                            Fraud
+                        </span>
+
+                        <b>
+                            {{ "{:,}".format(
+                                analytics.fraud_count|
+                                default(0, true)|int
+                            ) }}
+                        </b>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- RISK -->
+            <article class="analytics-card chart-card">
+
+                <div class="analytics-card-header">
+
+                    <div class="analytics-card-title">
+
+                        <div class="section-icon purple">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/shield.svg'
+                                ) }}"
+                                alt=""
+                            >
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                RISK DISTRIBUTION
+                            </span>
+
+                            <h2>
+                                Risk Intelligence
+                            </h2>
+
+                            <p>
+                                Current security risk
+                                segmentation.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <span class="analytics-badge purple-badge">
+                        ANALYZED
+                    </span>
+
+                </div>
+
+
+                <div class="risk-bars">
+
+                    <div class="risk-bar-item">
+
+                        <div>
+
+                            <span>
+                                <i class="risk-dot low"></i>
+                                Low Risk
+                            </span>
+
+                            <b>
+                                {{ "{:,}".format(
+                                    analytics.low_risk|
+                                    default(0, true)|int
+                                ) }}
+                            </b>
+
+                        </div>
+
+                        <div class="risk-track">
+
+                            <span
+                                class="risk-fill low"
+                                data-value="{{
+                                    analytics.low_risk|
+                                    default(0, true)|int
+                                }}"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="risk-bar-item">
+
+                        <div>
+
+                            <span>
+                                <i class="risk-dot medium"></i>
+                                Medium Risk
+                            </span>
+
+                            <b>
+                                {{ "{:,}".format(
+                                    analytics.medium_risk|
+                                    default(0, true)|int
+                                ) }}
+                            </b>
+
+                        </div>
+
+                        <div class="risk-track">
+
+                            <span
+                                class="risk-fill medium"
+                                data-value="{{
+                                    analytics.medium_risk|
+                                    default(0, true)|int
+                                }}"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="risk-bar-item">
+
+                        <div>
+
+                            <span>
+                                <i class="risk-dot high"></i>
+                                High Risk
+                            </span>
+
+                            <b>
+                                {{ "{:,}".format(
+                                    analytics.high_risk|
+                                    default(0, true)|int
+                                ) }}
+                            </b>
+
+                        </div>
+
+                        <div class="risk-track">
+
+                            <span
+                                class="risk-fill high"
+                                data-value="{{
+                                    analytics.high_risk|
+                                    default(0, true)|int
+                                }}"
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="risk-summary">
+
+                    <div>
+                        <span>AVG RISK</span>
+                        <strong>
+                            {{ "%.1f"|format(
+                                analytics.average_risk|
+                                default(0, true)|float
+                            ) }}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>HIGH RISK</span>
+                        <strong>
+                            {{ "{:,}".format(
+                                analytics.high_risk|
+                                default(0, true)|int
+                            ) }}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>MEDIUM</span>
+                        <strong>
+                            {{ "{:,}".format(
+                                analytics.medium_risk|
+                                default(0, true)|int
+                            ) }}
+                        </strong>
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- DATASET INTELLIGENCE -->
+        <section class="analytics-card dataset-card">
+
+            <div class="analytics-card-header">
+
+                <div class="analytics-card-title">
+
+                    <div class="section-icon cyan">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            DATASET INTELLIGENCE
+                        </span>
+
+                        <h2>
+                            Data Quality & Structure
+                        </h2>
+
+                        <p>
+                            Technical overview of the active
+                            analytics dataset.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="analytics-badge green-badge">
+                    SYSTEM READY
+                </span>
+
+            </div>
+
+
+            <div class="dataset-grid">
+
+                <div class="dataset-stat">
+                    <span>ROWS</span>
+
+                    <strong>
+                        {{ "{:,}".format(
+                            analytics.rows|
+                            default(0, true)|int
+                        ) }}
+                    </strong>
+
+                    <small>
+                        Analyzed records
+                    </small>
+                </div>
+
+
+                <div class="dataset-stat">
+                    <span>COLUMNS</span>
+
+                    <strong>
+                        {{ "{:,}".format(
+                            analytics.columns|
+                            default([], true)|length
+                        ) }}
+                    </strong>
+
+                    <small>
+                        Available features
+                    </small>
+                </div>
+
+
+                <div class="dataset-stat">
+                    <span>NUMERIC FEATURES</span>
+
+                    <strong>
+                        {{ "{:,}".format(
+                            analytics.numeric_columns|
+                            default([], true)|length
+                        ) }}
+                    </strong>
+
+                    <small>
+                        Model-ready fields
+                    </small>
+                </div>
+
+
+                <div class="dataset-stat">
+                    <span>MISSING VALUES</span>
+
+                    <strong>
+                        {{ "{:,}".format(
+                            analytics.missing_values|
+                            default(0, true)|int
+                        ) }}
+                    </strong>
+
+                    <small>
+                        Across active dataset
+                    </small>
+                </div>
+
+
+                <div class="dataset-stat">
+
+                    <span>
+                        TARGET COLUMN
+                    </span>
+
+                    <strong class="dataset-target">
+
+                        {{ analytics.target_column|
+                           default(
+                               "Not detected",
+                               true
+                           ) }}
+
+                    </strong>
+
+                    <small>
+                        Fraud classification target
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+        <section class="analytics-card features-card">
+
+            <div class="analytics-card-header feature-header">
+
+                <div class="analytics-card-title">
+
+                    <div class="section-icon blue">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            FEATURE INTELLIGENCE
+                        </span>
+
+                        <h2>
+                            Active Dataset Features
+                        </h2>
+
+                        <p>
+                            Search and inspect columns available
+                            to the analytics engine.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-search">
+
+                    <span>⌕</span>
+
+                    <input
+                        type="search"
+                        data-analytics-search
+                        placeholder="Search features..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                {% for column in analytics.columns|default([], true) %}
+
+                <div class="analytics-feature">
+
+                    <span class="feature-number">
+                        {{ "%02d"|format(loop.index) }}
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            {{ column }}
+                        </strong>
+
+                        <small>
+
+                            {% if column in
+                                analytics.numeric_columns|
+                                default([], true)
+                            %}
+                                Numeric feature
+                            {% else %}
+                                Dataset field
+                            {% endif %}
+
+                        </small>
+
+                    </div>
+
+                    <span class="feature-arrow">
+                        →
+                    </span>
+
+                </div>
+
+                {% else %}
+
+                <div class="feature-empty">
+                    No dataset features available.
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <section class="analytics-footer">
+
+            <div class="footer-shield">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/shield.svg'
+                    ) }}"
+                    alt=""
+                >
+
+            </div>
+
+            <div>
+
+                <strong>
+                    FinGuard AI Analytics Engine
+                </strong>
+
+                <p>
+                    Intelligence generated from the configured
+                    fraud-detection and risk-analysis pipeline.
+                </p>
+
+            </div>
+
+            <span>
+
+                <i></i>
+
+                {{ analytics.model_status|
+                   default("Offline", true) }}
+
+            </span>
+
+        </section>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/analytics.js'
+    ) }}?v=30"
+></script>
+
+{% endblock %}

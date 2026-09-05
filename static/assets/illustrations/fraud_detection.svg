@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+<defs>
+ <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18d9ff"/><stop offset="1" stop-color="#496cff"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="900" height="600" rx="42" fill="#071426"/>
+<g opacity=".18" stroke="#18d9ff"><path d="M70 470h760M70 410h760M70 350h760M70 290h760M130 80v440M210 80v440M290 80v440M370 80v440M450 80v440M530 80v440M610 80v440M690 80v440M770 80v440"/></g>
+<path d="M105 430 C190 410 210 300 285 335 S390 390 470 300 S575 220 650 270 S730 360 805 190" fill="none" stroke="url(#a)" stroke-width="12" filter="url(#glow)"/>
+<circle cx="650" cy="270" r="14" fill="#18d9ff"/><circle cx="805" cy="190" r="18" fill="#ff5668"/>
+<path d="M650 270 805 190" stroke="#ff5668" stroke-width="5" stroke-dasharray="10 12"/>
+<g transform="translate(350 105)">
+ <path d="M100 0 205 40v82c0 66-43 106-105 133C38 228-5 188-5 122V40z" fill="#0b1d36" stroke="url(#a)" stroke-width="10"/>
+ <path d="m62 112 26 26 55-63" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<rect x="70" y="90" width="205" height="70" rx="16" fill="#0c213d" stroke="#18d9ff" opacity=".95"/>
+<text x="94" y="119" fill="#fff" font-family="Arial,sans-serif" font-size="18" font-weight="700">FRAUD DETECTION</text>
+<text x="94" y="145" fill="#79eaff" font-family="Arial,sans-serif" font-size="14">AI RISK MONITORING</text>
+</svg>

@@ -1,0 +1,1554 @@
+{% extends "base.html" %}
+
+
+{% block page_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/dashboard.css') }}?v=42"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="dashboard-page">
+
+
+    <!-- =========================================================
+         PAGE HEADER
+    ========================================================== -->
+
+    <section class="dashboard-header">
+
+        <div class="dashboard-header-left">
+
+            <span class="dashboard-eyebrow">
+                FINANCIAL SECURITY INTELLIGENCE
+            </span>
+
+            <h1>
+                Security Dashboard
+            </h1>
+
+            <p>
+                Real-time overview of financial transactions,
+                fraud detection, anomaly monitoring and
+                risk intelligence.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-header-right">
+
+            <div class="dashboard-system-status">
+
+                <span class="dashboard-status-dot"></span>
+
+                <span>
+                    {% if dashboard.model_status == "Active" %}
+                        AI Security Engine Active
+                    {% else %}
+                        Monitoring Mode
+                    {% endif %}
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="dashboard-refresh"
+                data-dashboard-refresh
+                title="Refresh dashboard"
+            >
+
+                <span class="refresh-icon">
+                    ↻
+                </span>
+
+                <span>
+                    Refresh
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         PREMIUM KPI CARDS
+    ========================================================== -->
+
+    <section class="dashboard-kpi-grid premium-kpi-grid">
+
+
+        <!-- =====================================================
+             TOTAL TRANSACTIONS
+        ====================================================== -->
+
+        <article
+            class="premium-kpi-card total-card"
+            data-kpi-card
+            tabindex="0"
+            role="button"
+            aria-label="Total Transactions"
+        >
+
+            <div class="premium-kpi-inner">
+
+
+                <!-- FRONT -->
+
+                <div class="premium-kpi-face premium-kpi-front">
+
+                    <div class="premium-kpi-top">
+
+                        <div class="premium-kpi-icon">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/analytics.svg'
+                                ) }}"
+                                alt="Transactions"
+                            >
+
+                        </div>
+
+
+                        <span class="premium-kpi-tag">
+                            TOTAL
+                        </span>
+
+                    </div>
+
+
+                    <div class="premium-kpi-content">
+
+                        <span class="premium-kpi-label">
+                            Total Transactions
+                        </span>
+
+
+                        <strong class="premium-kpi-value">
+
+                            {{ "{:,}".format(
+                                dashboard.total_transactions
+                            ) }}
+
+                        </strong>
+
+
+                        <span class="premium-kpi-meta">
+                            Transactions analyzed
+                        </span>
+
+                    </div>
+
+
+                    <div class="premium-kpi-footer">
+
+                        <span class="kpi-status-dot blue-dot"></span>
+
+                        Dataset activity
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BACK -->
+
+                <div class="premium-kpi-face premium-kpi-back">
+
+                    <div class="premium-back-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+
+                    <span class="premium-back-label">
+                        TRANSACTION INTELLIGENCE
+                    </span>
+
+
+                    <strong>
+
+                        {{ "{:,}".format(
+                            dashboard.total_transactions
+                        ) }}
+
+                    </strong>
+
+
+                    <p>
+                        Total financial transactions processed
+                        by the FinGuard AI monitoring pipeline.
+                    </p>
+
+
+                    <div class="premium-back-status">
+
+                        <span></span>
+
+                        Dataset Activity
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             FRAUD TRANSACTIONS
+        ====================================================== -->
+
+        <article
+            class="premium-kpi-card fraud-card"
+            data-kpi-card
+            tabindex="0"
+            role="button"
+            aria-label="Fraud Transactions"
+        >
+
+            <div class="premium-kpi-inner">
+
+
+                <!-- FRONT -->
+
+                <div class="premium-kpi-face premium-kpi-front">
+
+                    <div class="premium-kpi-top">
+
+                        <div class="premium-kpi-icon">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/fraud.svg'
+                                ) }}"
+                                alt="Fraud"
+                            >
+
+                        </div>
+
+
+                        <span class="premium-kpi-tag">
+                            ALERT
+                        </span>
+
+                    </div>
+
+
+                    <div class="premium-kpi-content">
+
+                        <span class="premium-kpi-label">
+                            Fraud Transactions
+                        </span>
+
+
+                        <strong class="premium-kpi-value">
+
+                            {{ "{:,}".format(
+                                dashboard.fraud_transactions
+                            ) }}
+
+                        </strong>
+
+
+                        <span class="premium-kpi-meta">
+                            Suspicious transactions detected
+                        </span>
+
+                    </div>
+
+
+                    <div class="premium-kpi-footer">
+
+                        <span class="kpi-status-dot red-dot"></span>
+
+                        Security alerts
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BACK -->
+
+                <div class="premium-kpi-face premium-kpi-back">
+
+                    <div class="premium-back-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/fraud.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+
+                    <span class="premium-back-label">
+                        FRAUD INTELLIGENCE
+                    </span>
+
+
+                    <strong>
+
+                        {{ "{:,}".format(
+                            dashboard.fraud_transactions
+                        ) }}
+
+                    </strong>
+
+
+                    <p>
+                        Suspicious financial activity identified
+                        through the fraud detection pipeline.
+                    </p>
+
+
+                    <div class="premium-back-status danger-status">
+
+                        <span></span>
+
+                        Security Alerts
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             LEGITIMATE TRANSACTIONS
+        ====================================================== -->
+
+        <article
+            class="premium-kpi-card safe-card"
+            data-kpi-card
+            tabindex="0"
+            role="button"
+            aria-label="Legitimate Transactions"
+        >
+
+            <div class="premium-kpi-inner">
+
+
+                <!-- FRONT -->
+
+                <div class="premium-kpi-face premium-kpi-front">
+
+                    <div class="premium-kpi-top">
+
+                        <div class="premium-kpi-icon">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/secure.svg'
+                                ) }}"
+                                alt="Secure"
+                            >
+
+                        </div>
+
+
+                        <span class="premium-kpi-tag">
+                            SAFE
+                        </span>
+
+                    </div>
+
+
+                    <div class="premium-kpi-content">
+
+                        <span class="premium-kpi-label">
+                            Legitimate Transactions
+                        </span>
+
+
+                        <strong class="premium-kpi-value">
+
+                            {{ "{:,}".format(
+                                dashboard.legitimate_transactions
+                            ) }}
+
+                        </strong>
+
+
+                        <span class="premium-kpi-meta">
+                            Transactions without fraud flag
+                        </span>
+
+                    </div>
+
+
+                    <div class="premium-kpi-footer">
+
+                        <span class="kpi-status-dot green-dot"></span>
+
+                        Protected activity
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BACK -->
+
+                <div class="premium-kpi-face premium-kpi-back">
+
+                    <div class="premium-back-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/secure.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+
+                    <span class="premium-back-label">
+                        PROTECTED ACTIVITY
+                    </span>
+
+
+                    <strong>
+
+                        {{ "{:,}".format(
+                            dashboard.legitimate_transactions
+                        ) }}
+
+                    </strong>
+
+
+                    <p>
+                        Transactions currently classified as
+                        legitimate by the security pipeline.
+                    </p>
+
+
+                    <div class="premium-back-status safe-status">
+
+                        <span></span>
+
+                        Protected Activity
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             FRAUD DETECTION RATE
+        ====================================================== -->
+
+        <article
+            class="premium-kpi-card risk-card"
+            data-kpi-card
+            tabindex="0"
+            role="button"
+            aria-label="Fraud Detection Rate"
+        >
+
+            <div class="premium-kpi-inner">
+
+
+                <!-- FRONT -->
+
+                <div class="premium-kpi-face premium-kpi-front">
+
+                    <div class="premium-kpi-top">
+
+                        <div class="premium-kpi-icon">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/shield.svg'
+                                ) }}"
+                                alt="Risk"
+                            >
+
+                        </div>
+
+
+                        <span class="premium-kpi-tag">
+                            RISK
+                        </span>
+
+                    </div>
+
+
+                    <div class="premium-kpi-content">
+
+                        <span class="premium-kpi-label">
+                            Fraud Detection Rate
+                        </span>
+
+
+                        <strong class="premium-kpi-value">
+
+                            {{ "%.2f"|format(
+                                dashboard.fraud_rate
+                            ) }}%
+
+                        </strong>
+
+
+                        <span class="premium-kpi-meta">
+                            Fraud share of transactions
+                        </span>
+
+                    </div>
+
+
+                    <div class="premium-kpi-footer">
+
+                        <span class="kpi-status-dot purple-dot"></span>
+
+                        Detection intelligence
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BACK -->
+
+                <div class="premium-kpi-face premium-kpi-back">
+
+                    <div class="premium-back-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+
+                    <span class="premium-back-label">
+                        DETECTION INTELLIGENCE
+                    </span>
+
+
+                    <strong>
+
+                        {{ "%.2f"|format(
+                            dashboard.fraud_rate
+                        ) }}%
+
+                    </strong>
+
+
+                    <p>
+                        Percentage of analyzed transactions
+                        identified as potentially fraudulent.
+                    </p>
+
+
+                    <div class="premium-back-status risk-status">
+
+                        <span></span>
+
+                        Risk Monitoring
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         RISK INTELLIGENCE
+    ========================================================== -->
+
+    <section class="dashboard-main-grid">
+
+
+        <!-- =====================================================
+             RISK DISTRIBUTION
+        ====================================================== -->
+
+        <article
+            class="dashboard-card dashboard-risk-card"
+        >
+
+            <div class="dashboard-card-header">
+
+                <div>
+
+                    <span class="dashboard-card-kicker">
+                        RISK INTELLIGENCE
+                    </span>
+
+                    <h2>
+                        Risk Distribution
+                    </h2>
+
+                    <p>
+                        Current transaction risk classification.
+                    </p>
+
+                </div>
+
+
+                <span class="dashboard-card-status">
+
+                    <span class="live-dot"></span>
+
+                    LIVE
+
+                </span>
+
+            </div>
+
+
+            <div class="dashboard-risk-overview">
+
+
+                <!-- HIGH -->
+
+                <div class="risk-line">
+
+                    <div class="risk-line-header">
+
+                        <span class="risk-name">
+
+                            <span class="risk-dot high"></span>
+
+                            <span>
+                                High Risk
+                            </span>
+
+                        </span>
+
+
+                        <strong>
+                            {{ "{:,}".format(
+                                dashboard.high_risk
+                            ) }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="risk-line-bar">
+
+                        {% if dashboard.dataset_rows > 0 %}
+
+                            {% set high_width =
+                                (
+                                    dashboard.high_risk
+                                    / dashboard.dataset_rows
+                                    * 100
+                                )
+                            %}
+
+                        {% else %}
+
+                            {% set high_width = 0 %}
+
+                        {% endif %}
+
+
+                        <div
+                            class="risk-line-fill high"
+                            style="width: {{ high_width }}%;"
+                        ></div>
+
+                    </div>
+
+
+                    <span class="risk-percentage">
+
+                        {% if dashboard.dataset_rows > 0 %}
+
+                            {{ "%.1f"|format(
+                                dashboard.high_risk
+                                / dashboard.dataset_rows
+                                * 100
+                            ) }}%
+
+                        {% else %}
+
+                            0.0%
+
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- MEDIUM -->
+
+                <div class="risk-line">
+
+                    <div class="risk-line-header">
+
+                        <span class="risk-name">
+
+                            <span class="risk-dot medium"></span>
+
+                            <span>
+                                Medium Risk
+                            </span>
+
+                        </span>
+
+
+                        <strong>
+                            {{ "{:,}".format(
+                                dashboard.medium_risk
+                            ) }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="risk-line-bar">
+
+                        {% if dashboard.dataset_rows > 0 %}
+
+                            {% set medium_width =
+                                (
+                                    dashboard.medium_risk
+                                    / dashboard.dataset_rows
+                                    * 100
+                                )
+                            %}
+
+                        {% else %}
+
+                            {% set medium_width = 0 %}
+
+                        {% endif %}
+
+
+                        <div
+                            class="risk-line-fill medium"
+                            style="width: {{ medium_width }}%;"
+                        ></div>
+
+                    </div>
+
+
+                    <span class="risk-percentage">
+
+                        {% if dashboard.dataset_rows > 0 %}
+
+                            {{ "%.1f"|format(
+                                dashboard.medium_risk
+                                / dashboard.dataset_rows
+                                * 100
+                            ) }}%
+
+                        {% else %}
+
+                            0.0%
+
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- LOW -->
+
+                <div class="risk-line">
+
+                    <div class="risk-line-header">
+
+                        <span class="risk-name">
+
+                            <span class="risk-dot low"></span>
+
+                            <span>
+                                Low Risk
+                            </span>
+
+                        </span>
+
+
+                        <strong>
+                            {{ "{:,}".format(
+                                dashboard.low_risk
+                            ) }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="risk-line-bar">
+
+                        {% if dashboard.dataset_rows > 0 %}
+
+                            {% set low_width =
+                                (
+                                    dashboard.low_risk
+                                    / dashboard.dataset_rows
+                                    * 100
+                                )
+                            %}
+
+                        {% else %}
+
+                            {% set low_width = 0 %}
+
+                        {% endif %}
+
+
+                        <div
+                            class="risk-line-fill low"
+                            style="width: {{ low_width }}%;"
+                        ></div>
+
+                    </div>
+
+
+                    <span class="risk-percentage">
+
+                        {% if dashboard.dataset_rows > 0 %}
+
+                            {{ "%.1f"|format(
+                                dashboard.low_risk
+                                / dashboard.dataset_rows
+                                * 100
+                            ) }}%
+
+                        {% else %}
+
+                            0.0%
+
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             AVERAGE RISK
+        ====================================================== -->
+
+        <article
+            class="dashboard-card dashboard-score-card"
+        >
+
+            <div class="dashboard-card-header">
+
+                <div>
+
+                    <span class="dashboard-card-kicker">
+                        SECURITY SCORE
+                    </span>
+
+                    <h2>
+                        Average Risk
+                    </h2>
+
+                    <p>
+                        Aggregate risk across available transactions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-score-content">
+
+
+                <!-- SCORE -->
+
+                <div
+                    class="dashboard-score-circle"
+                    style="
+                        background:
+                        conic-gradient(
+                            #2563eb 0deg,
+                            #60a5fa {{ dashboard.average_risk * 3.6 }}deg,
+                            #e8eef7 {{ dashboard.average_risk * 3.6 }}deg,
+                            #e8eef7 360deg
+                        );
+                    "
+                >
+
+                    <div class="dashboard-score-inner">
+
+                        <strong>
+                            {{ dashboard.average_risk }}
+                        </strong>
+
+                        <span>
+                            /100
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SCORE INFORMATION -->
+
+                <div class="dashboard-score-copy">
+
+                    <span class="score-label">
+                        CURRENT SECURITY LEVEL
+                    </span>
+
+
+                    {% if dashboard.average_risk >= 75 %}
+
+                        <strong class="danger-text">
+                            High Risk Environment
+                        </strong>
+
+                        <span>
+                            Elevated transaction risk requires
+                            immediate security attention.
+                        </span>
+
+
+                        <div class="score-status danger-status">
+
+                            <span></span>
+
+                            Critical monitoring required
+
+                        </div>
+
+
+                    {% elif dashboard.average_risk >= 40 %}
+
+                        <strong class="warning-text">
+                            Moderate Risk Environment
+                        </strong>
+
+                        <span>
+                            Additional monitoring is recommended
+                            for current transaction activity.
+                        </span>
+
+
+                        <div class="score-status warning-status">
+
+                            <span></span>
+
+                            Enhanced monitoring active
+
+                        </div>
+
+
+                    {% else %}
+
+                        <strong class="success-text">
+                            Low Risk Environment
+                        </strong>
+
+                        <span>
+                            Current transaction activity appears
+                            stable and controlled.
+                        </span>
+
+
+                        <div class="score-status success-status">
+
+                            <span></span>
+
+                            Environment protected
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         ANALYTICS CHARTS
+    ========================================================== -->
+
+    <section class="dashboard-chart-grid">
+
+
+        <!-- =====================================================
+             TRANSACTION CLASSIFICATION
+        ====================================================== -->
+
+        <article
+            class="dashboard-card dashboard-chart-card transaction-classification-card"
+        >
+
+            <div class="dashboard-card-header">
+
+                <div>
+
+                    <span class="dashboard-card-kicker">
+                        FRAUD INTELLIGENCE
+                    </span>
+
+                    <h2>
+                        Transaction Classification
+                    </h2>
+
+                    <p>
+                        Legitimate versus fraudulent
+                        transaction distribution.
+                    </p>
+
+                </div>
+
+                <span class="dashboard-card-status">
+                    ANALYSIS
+                </span>
+
+            </div>
+
+
+            <div class="dashboard-chart-container">
+
+                <canvas
+                    id="fraudDistributionChart"
+                    data-chart='{{ chart_data.fraud_distribution | tojson }}'
+                ></canvas>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =====================================================
+             RISK CLASSIFICATION
+        ====================================================== -->
+
+        <article
+            class="dashboard-card dashboard-chart-card risk-classification-card"
+        >
+
+            <div class="dashboard-card-header">
+
+                <div>
+
+                    <span class="dashboard-card-kicker">
+                        RISK ANALYTICS
+                    </span>
+
+                    <h2>
+                        Risk Classification
+                    </h2>
+
+                    <p>
+                        Distribution of low, medium and
+                        high-risk activity.
+                    </p>
+
+                </div>
+
+                <span class="dashboard-card-status">
+                    LIVE DATA
+                </span>
+
+            </div>
+
+
+            <div class="dashboard-chart-container">
+
+                <canvas
+                    id="riskDistributionChart"
+                    data-chart='{{ chart_data.risk_distribution | tojson }}'
+                ></canvas>
+
+            </div>
+
+        </article>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         SECURITY ENGINE
+    ========================================================== -->
+
+    <section class="dashboard-engine-card">
+
+
+        <div class="dashboard-engine-left">
+
+
+            <div class="dashboard-engine-icon">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/shield.svg'
+                    ) }}"
+                    alt="Security Engine"
+                    loading="lazy"
+                >
+
+            </div>
+
+
+            <div class="dashboard-engine-content">
+
+                <span class="dashboard-card-kicker">
+                    SYSTEM STATUS
+                </span>
+
+                <h2>
+                    FinGuard AI Protection Engine
+                </h2>
+
+                <p>
+                    Fraud detection and transaction risk
+                    intelligence services are continuously
+                    monitoring the environment.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="dashboard-engine-status">
+
+            {% if dashboard.model_status == "Active" %}
+
+                <span class="engine-status-dot active"></span>
+
+                <strong>
+                    Operational
+                </strong>
+
+            {% else %}
+
+                <span class="engine-status-dot"></span>
+
+                <strong>
+                    Monitoring
+                </strong>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         RECENT TRANSACTIONS
+    ========================================================== -->
+
+    <section
+        class="dashboard-card dashboard-transactions-card"
+    >
+
+
+        <div class="dashboard-card-header">
+
+            <div>
+
+                <span class="dashboard-card-kicker">
+                    TRANSACTION MONITOR
+                </span>
+
+                <h2>
+                    Recent Transactions
+                </h2>
+
+                <p>
+                    Latest financial records available
+                    in the dataset.
+                </p>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('transaction') }}"
+                class="dashboard-view-all"
+            >
+
+                View All
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+
+
+        {% if transactions %}
+
+
+            <!-- =================================================
+                 TRANSACTION TABLE
+            ================================================== -->
+
+            <div class="dashboard-table-wrap">
+
+                <table class="dashboard-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Transaction ID
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Risk Score
+                            </th>
+
+                            <th>
+                                Risk Level
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for transaction in transactions %}
+
+                        <tr>
+
+
+                            <!-- TRANSACTION ID -->
+
+                            <td>
+
+                                <span
+                                    class="dashboard-transaction-id"
+                                >
+                                    {{ transaction.id }}
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- AMOUNT -->
+
+                            <td>
+
+                                <span
+                                    class="dashboard-amount"
+                                >
+
+                                    {% if transaction.amount != "—" %}
+
+                                        ₹{{ transaction.amount }}
+
+                                    {% else %}
+
+                                        —
+
+                                    {% endif %}
+
+                                </span>
+
+                            </td>
+
+
+
+                            <!-- RISK SCORE -->
+
+                            <td>
+
+                                <strong
+                                    class="transaction-risk-score"
+                                >
+                                    {{ transaction.risk_score }}
+                                </strong>
+
+                            </td>
+
+
+
+                            <!-- RISK LEVEL -->
+
+                            <td>
+
+                                {% if "High" in transaction.risk %}
+
+                                    <span
+                                        class="dashboard-risk-badge high"
+                                    >
+                                        <span class="risk-badge-dot"></span>
+                                        High Risk
+                                    </span>
+
+                                {% elif "Medium" in transaction.risk %}
+
+                                    <span
+                                        class="dashboard-risk-badge medium"
+                                    >
+                                        <span class="risk-badge-dot"></span>
+                                        Medium Risk
+                                    </span>
+
+                                {% else %}
+
+                                    <span
+                                        class="dashboard-risk-badge low"
+                                    >
+                                        <span class="risk-badge-dot"></span>
+                                        Low Risk
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+
+                            <!-- STATUS -->
+
+                            <td>
+
+                                {% if transaction.status == "Fraud" %}
+
+                                    <span
+                                        class="dashboard-badge danger"
+                                    >
+
+                                        <i></i>
+
+                                        Fraud
+
+                                    </span>
+
+                                {% else %}
+
+                                    <span
+                                        class="dashboard-badge success"
+                                    >
+
+                                        <i></i>
+
+                                        Legitimate
+
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+            <div class="dashboard-empty">
+
+                <div class="dashboard-empty-icon">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/analytics.svg'
+                        ) }}"
+                        alt="Transactions"
+                        loading="lazy"
+                    >
+
+                </div>
+
+
+                <h3>
+                    No Transaction Records
+                </h3>
+
+
+                <p>
+                    No transaction records are currently
+                    available for analysis.
+                </p>
+
+
+                <a
+                    href="{{ url_for('prediction') }}"
+                    class="dashboard-empty-action"
+                >
+
+                    Analyze Transaction
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+        {% endif %}
+
+    </section>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <section class="dashboard-footer-status">
+
+        <div>
+
+            <span class="dashboard-footer-dot"></span>
+
+            <strong>
+                FinGuard AI Security Engine
+            </strong>
+
+            <span>
+                • Protected Environment
+            </span>
+
+        </div>
+
+
+        <div>
+
+            Dataset:
+
+            <strong>
+                {{ "{:,}".format(
+                    dashboard.dataset_rows
+                ) }}
+            </strong>
+
+            records
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}
+
+
+
+{% block page_js %}
+
+<!-- =========================================================
+     CHART.JS
+========================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
+></script>
+
+
+<!-- =========================================================
+     DASHBOARD JAVASCRIPT
+========================================================== -->
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/dashboard.js'
+    ) }}?v=42"
+></script>
+
+{% endblock %}

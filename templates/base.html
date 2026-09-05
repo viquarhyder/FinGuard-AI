@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#07152b"
+    >
+
+    <meta
+        name="description"
+        content="FinGuard AI — Intelligent Financial Fraud Detection and Risk Intelligence"
+    >
+
+    <title>
+        {% if page_title %}
+            {{ page_title }} | FinGuard AI
+        {% else %}
+            FinGuard AI
+        {% endif %}
+    </title>
+
+
+    <!-- =====================================================
+         FAVICON
+         ===================================================== -->
+
+    <link
+        rel="icon"
+        type="image/x-icon"
+        href="{{ url_for(
+            'static',
+            filename='icons/favicon.ico'
+        ) }}"
+    >
+
+
+    <!-- =====================================================
+         LOCAL INTER FONT
+         ===================================================== -->
+
+    <style>
+
+        @font-face {
+
+            font-family: "Inter";
+
+            src:
+                url(
+                    "{{ url_for(
+                        'static',
+                        filename='assets/fonts/Inter-Regular.otf'
+                    ) }}"
+                )
+                format("opentype");
+
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+
+        }
+
+
+        @font-face {
+
+            font-family: "Inter";
+
+            src:
+                url(
+                    "{{ url_for(
+                        'static',
+                        filename='assets/fonts/Inter-Medium.otf'
+                    ) }}"
+                )
+                format("opentype");
+
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+
+        }
+
+
+        @font-face {
+
+            font-family: "Inter";
+
+            src:
+                url(
+                    "{{ url_for(
+                        'static',
+                        filename='assets/fonts/Inter-SemiBold.otf'
+                    ) }}"
+                )
+                format("opentype");
+
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+
+        }
+
+
+        @font-face {
+
+            font-family: "Inter";
+
+            src:
+                url(
+                    "{{ url_for(
+                        'static',
+                        filename='assets/fonts/Inter-Bold.otf'
+                    ) }}"
+                )
+                format("opentype");
+
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+
+        }
+
+    </style>
+
+
+    <!-- =====================================================
+         GLOBAL CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/style.css'
+        ) }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/responsive.css'
+        ) }}"
+    >
+
+
+    <!-- =====================================================
+         PAGE SPECIFIC CSS
+         ===================================================== -->
+
+    {% block page_css %}{% endblock %}
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         APPLICATION
+         ===================================================== -->
+
+    <div
+        class="app-shell"
+        id="appShell"
+    >
+
+
+        <!-- =================================================
+             MOBILE OVERLAY
+             ================================================= -->
+
+        <div
+            class="sidebar-overlay"
+            id="sidebarOverlay"
+            aria-hidden="true"
+        ></div>
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside
+            class="sidebar"
+            id="sidebar"
+        >
+
+
+            <!-- =================================================
+                 BRAND
+                 ================================================= -->
+
+            <div class="sidebar-brand">
+
+                <a
+                    href="{{ url_for('home') }}"
+                    class="brand-link"
+                    aria-label="FinGuard AI Home"
+                >
+
+                    <div class="brand-logo">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='images/logo.png'
+                            ) }}"
+                            alt="FinGuard AI"
+                        >
+
+                    </div>
+
+
+                    <div class="brand-copy">
+
+                        <span class="brand-name">
+                            FinGuard
+                        </span>
+
+                        <span class="brand-ai">
+                            AI
+                        </span>
+
+                    </div>
+
+                </a>
+
+
+                <button
+                    type="button"
+                    class="mobile-close-btn"
+                    id="closeSidebar"
+                    aria-label="Close navigation"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 SYSTEM STATUS
+                 ================================================= -->
+
+            <div class="sidebar-status">
+
+                <div class="status-icon">
+
+                    <span class="status-dot"></span>
+
+                </div>
+
+
+                <div class="status-copy">
+
+                    <span class="status-title">
+                        Security System
+                    </span>
+
+
+                    <span class="status-subtitle">
+
+                        {% if system_active %}
+
+                            AI protection active
+
+                        {% else %}
+
+                            Standby mode
+
+                        {% endif %}
+
+                    </span>
+
+                </div>
+
+
+                <span
+                    class="
+                        status-label
+                        {% if system_active %}
+                            status-online
+                        {% else %}
+                            status-offline
+                        {% endif %}
+                    "
+                >
+
+                    {% if system_active %}
+
+                        ONLINE
+
+                    {% else %}
+
+                        STANDBY
+
+                    {% endif %}
+
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRIMARY NAVIGATION
+                 ================================================= -->
+
+            <nav
+                class="sidebar-navigation"
+                aria-label="Main navigation"
+            >
+
+
+                <div class="nav-section-label">
+                    WORKSPACE
+                </div>
+
+
+                <!-- =================================================
+                     DASHBOARD
+                     ================================================= -->
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="
+                        nav-item
+                        {% if request.endpoint == 'dashboard' %}
+                            active
+                        {% endif %}
+                    "
+                >
+
+                    <span class="nav-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </span>
+
+
+                    <span class="nav-text">
+                        Dashboard
+                    </span>
+
+
+                    {% if request.endpoint == 'dashboard' %}
+
+                        <span
+                            class="nav-active-line"
+                        ></span>
+
+                    {% endif %}
+
+                </a>
+
+
+                <!-- =================================================
+                     PREDICTION
+                     ================================================= -->
+
+                <a
+                    href="{{ url_for('prediction') }}"
+                    class="
+                        nav-item
+                        {% if request.endpoint == 'prediction' %}
+                            active
+                        {% endif %}
+                    "
+                >
+
+                    <span class="nav-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </span>
+
+
+                    <span class="nav-text">
+                        Prediction
+                    </span>
+
+
+                    {% if request.endpoint == 'prediction' %}
+
+                        <span
+                            class="nav-active-line"
+                        ></span>
+
+                    {% endif %}
+
+                </a>
+
+
+                <!-- =================================================
+                     TRANSACTION ANALYSIS
+                     ================================================= -->
+
+                <a
+                    href="{{ url_for('transaction') }}"
+                    class="
+                        nav-item
+                        {% if request.endpoint == 'transaction' %}
+                            active
+                        {% endif %}
+                    "
+                >
+
+                    <span class="nav-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/fraud.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </span>
+
+
+                    <span class="nav-text">
+                        Transaction Analysis
+                    </span>
+
+
+                    {% if request.endpoint == 'transaction' %}
+
+                        <span
+                            class="nav-active-line"
+                        ></span>
+
+                    {% endif %}
+
+                </a>
+
+
+                <!-- =================================================
+                     USER ANALYSIS — NEW
+                     ================================================= -->
+
+                <a
+                    href="{{ url_for('user_analysis') }}"
+                    class="
+                        nav-item
+                        {% if request.endpoint == 'user_analysis' %}
+                            active
+                        {% endif %}
+                    "
+                >
+
+                    <span class="nav-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </span>
+
+
+                    <span class="nav-text">
+                        User Analysis
+                    </span>
+
+
+                    {% if request.endpoint == 'user_analysis' %}
+
+                        <span
+                            class="nav-active-line"
+                        ></span>
+
+                    {% endif %}
+
+                </a>
+
+
+                <!-- =================================================
+                     ANALYTICS
+                     ================================================= -->
+
+                <a
+                    href="{{ url_for('analytics') }}"
+                    class="
+                        nav-item
+                        {% if request.endpoint == 'analytics' %}
+                            active
+                        {% endif %}
+                    "
+                >
+
+                    <span class="nav-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </span>
+
+
+                    <span class="nav-text">
+                        Analytics
+                    </span>
+
+
+                    {% if request.endpoint == 'analytics' %}
+
+                        <span
+                            class="nav-active-line"
+                        ></span>
+
+                    {% endif %}
+
+                </a>
+
+
+                <!-- =================================================
+                     DIVIDER
+                     ================================================= -->
+
+                <div class="nav-divider"></div>
+
+
+                <div class="nav-section-label">
+                    SYSTEM
+                </div>
+
+
+                <!-- =================================================
+                     ABOUT
+                     ================================================= -->
+
+                <a
+                    href="{{ url_for('about') }}"
+                    class="
+                        nav-item
+                        {% if request.endpoint == 'about' %}
+                            active
+                        {% endif %}
+                    "
+                >
+
+                    <span class="nav-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/secure.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </span>
+
+
+                    <span class="nav-text">
+                        About FinGuard
+                    </span>
+
+
+                    {% if request.endpoint == 'about' %}
+
+                        <span
+                            class="nav-active-line"
+                        ></span>
+
+                    {% endif %}
+
+                </a>
+
+            </nav>
+
+
+            <!-- =================================================
+                 SIDEBAR BOTTOM
+                 ================================================= -->
+
+            <div class="sidebar-bottom">
+
+
+                <!-- =================================================
+                     AI PROTECTION
+                     ================================================= -->
+
+                <div class="protection-card">
+
+                    <div class="protection-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+
+                    <div class="protection-copy">
+
+                        <strong>
+                            AI Protection
+                        </strong>
+
+
+                        <span>
+
+                            {% if model_loaded %}
+
+                                Fraud model active
+
+                            {% else %}
+
+                                Model unavailable
+
+                            {% endif %}
+
+                        </span>
+
+                    </div>
+
+
+                    <span
+                        class="
+                            protection-indicator
+                            {% if model_loaded %}
+                                is-active
+                            {% endif %}
+                        "
+                    ></span>
+
+                </div>
+
+
+                <!-- =================================================
+                     SIDEBAR FOOTER
+                     ================================================= -->
+
+                <div class="sidebar-footer">
+
+                    <span>
+                        FinGuard AI
+                    </span>
+
+
+                    <span>
+                        v{{ app_version }}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN AREA
+             ================================================= -->
+
+        <main class="main-area">
+
+
+            <!-- =================================================
+                 TOPBAR
+                 ================================================= -->
+
+            <header class="topbar">
+
+
+                <div class="topbar-left">
+
+
+                    <!-- =================================================
+                         MOBILE MENU
+                         ================================================= -->
+
+                    <button
+                        type="button"
+                        class="mobile-menu-btn"
+                        id="openSidebar"
+                        aria-label="Open navigation"
+                    >
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </button>
+
+
+                    <!-- =================================================
+                         BREADCRUMB
+                         ================================================= -->
+
+                    <div class="breadcrumb">
+
+                        <a href="{{ url_for('home') }}">
+                            FinGuard AI
+                        </a>
+
+
+                        <span class="breadcrumb-separator">
+                            /
+                        </span>
+
+
+                        <span class="breadcrumb-current">
+
+                            {{ page_title or "Home" }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     TOPBAR RIGHT
+                     ================================================= -->
+
+                <div class="topbar-right">
+
+
+                    <!-- =================================================
+                         AI STATUS
+                         ================================================= -->
+
+                    <div class="topbar-status">
+
+                        <span
+                            class="
+                                topbar-status-dot
+                                {% if system_active %}
+                                    active
+                                {% endif %}
+                            "
+                        ></span>
+
+
+                        <span>
+                            AI System Active
+                        </span>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SECURITY BUTTON
+                         ================================================= -->
+
+                    <button
+                        type="button"
+                        class="topbar-icon-btn"
+                        title="Security status"
+                        aria-label="Security status"
+                    >
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/secure.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </button>
+
+
+                    <!-- =================================================
+                         USER PROFILE
+                         ================================================= -->
+
+                    <div class="user-profile">
+
+                        <div class="user-avatar">
+                            MVH
+                        </div>
+
+
+                        <div class="user-details">
+
+                            <strong>
+                                Mohammed Viquar Hyder
+                            </strong>
+
+
+                            <span>
+                                AI Engineer · Security Analyst
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 PAGE CONTENT
+                 ================================================= -->
+
+            <section
+                class="page-content"
+                id="pageContent"
+            >
+
+
+                <!-- =================================================
+                     FLASH MESSAGES
+                     ================================================= -->
+
+                {% with messages = get_flashed_messages(
+                    with_categories=true
+                ) %}
+
+                    {% if messages %}
+
+                        <div class="flash-container">
+
+                            {% for category, message in messages %}
+
+                                <div
+                                    class="
+                                        flash-message
+                                        flash-{{ category }}
+                                    "
+                                >
+
+                                    <span>
+                                        {{ message }}
+                                    </span>
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% endif %}
+
+                {% endwith %}
+
+
+                <!-- =================================================
+                     PAGE CONTENT BLOCK
+                     ================================================= -->
+
+                {% block content %}{% endblock %}
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER
+                 ================================================= -->
+
+            <footer class="app-footer">
+
+
+                <div class="footer-left">
+
+                    <span
+                        class="footer-status-dot"
+                    ></span>
+
+
+                    <span>
+                        FinGuard AI Security Engine
+                    </span>
+
+
+                    <span class="footer-divider">
+                        •
+                    </span>
+
+
+                    <span>
+                        Protected Environment
+                    </span>
+
+                </div>
+
+
+                <div class="footer-right">
+
+                    © {{ current_year }} FinGuard AI
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         GLOBAL JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        window.FinGuard = {
+
+            appName: "FinGuard AI",
+
+            version: "{{ app_version }}",
+
+            systemActive:
+                {{ "true" if system_active else "false" }},
+
+            modelLoaded:
+                {{ "true" if model_loaded else "false" }},
+
+            anomalyLoaded:
+                {{ "true" if anomaly_loaded else "false" }}
+
+        };
+
+    </script>
+
+
+    <!-- =====================================================
+         GLOBAL JS
+         ===================================================== -->
+
+    <script
+        src="{{ url_for(
+            'static',
+            filename='js/main.js'
+        ) }}"
+        defer
+    ></script>
+
+
+    <!-- =====================================================
+         PAGE SPECIFIC JS
+         ===================================================== -->
+
+    {% block page_js %}{% endblock %}
+
+    {% block extra_js %}{% endblock %}
+
+
+</body>
+
+</html>

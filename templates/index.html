@@ -1,0 +1,815 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HOME PAGE -->
+<div class="home-page">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="home-hero">
+
+        <div class="hero-grid"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+
+        <div class="hero-left">
+
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                AI-POWERED FINANCIAL SECURITY
+                <span class="badge-live">LIVE</span>
+            </div>
+
+            <h1>
+                Detect Fraud.
+                <span>Protect Every Transaction.</span>
+            </h1>
+
+            <p class="hero-description">
+                FinGuard AI combines machine learning, anomaly detection
+                and financial intelligence to identify suspicious activity
+                before it becomes a threat.
+            </p>
+
+            <div class="hero-actions">
+
+                <a
+                    href="{{ url_for('prediction') }}"
+                    class="hero-primary-btn"
+                >
+                    <span class="btn-icon">↗</span>
+                    <span>Analyze Transaction</span>
+                </a>
+
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="hero-secondary-btn"
+                >
+                    Open Security Dashboard
+                    <span>→</span>
+                </a>
+
+            </div>
+
+            <div class="hero-trust">
+
+                <div class="trust-item">
+                    <span>✓</span>
+                    AI Fraud Detection
+                </div>
+
+                <div class="trust-item">
+                    <span>✓</span>
+                    Real-Time Risk Analysis
+                </div>
+
+                <div class="trust-item">
+                    <span>✓</span>
+                    Secure Processing
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-right">
+
+            <div class="hero-image-card">
+
+                <div class="hero-card-top">
+
+                    <div>
+
+                        <span>
+                            LIVE SECURITY ENGINE
+                        </span>
+
+                        <strong>
+                            FinGuard AI
+                        </strong>
+
+                    </div>
+
+                    <div class="live-pill">
+                        <i></i>
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+                <div class="hero-image-wrapper">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='images/hero.png'
+                        ) }}"
+                        alt="FinGuard AI Security"
+                    >
+
+                    <div class="image-overlay"></div>
+
+                    <div class="floating-security-card">
+
+                        <div class="floating-icon">
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/shield.svg'
+                                ) }}"
+                                alt=""
+                            >
+                        </div>
+
+                        <div>
+                            <span>SECURITY STATUS</span>
+                            <strong>Protected</strong>
+                        </div>
+
+                        <b>✓</b>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-card-bottom">
+
+                    <div>
+
+                        <span>AI PROTECTION</span>
+
+                        <strong>
+                            Continuous Monitoring
+                        </strong>
+
+                    </div>
+
+                    <div class="ai-score">
+
+                        <strong>AI</strong>
+
+                        <span>SECURED</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATS
+    ====================================================== -->
+
+    <section class="home-stats">
+
+        <div
+            class="stat-card stat-blue active"
+            data-stat-card
+        >
+
+            <div class="stat-icon">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/analytics.svg'
+                    ) }}"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    TRANSACTION INTELLIGENCE
+                </span>
+
+                <strong
+                    data-count="{{ metrics.total_transactions|default(0, true) }}"
+                >
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Transactions analyzed
+                </span>
+
+            </div>
+
+            <span class="card-arrow">↗</span>
+
+        </div>
+
+
+        <div
+            class="stat-card stat-red"
+            data-stat-card
+        >
+
+            <div class="stat-icon">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/fraud.svg'
+                    ) }}"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    FRAUD DETECTION
+                </span>
+
+                <strong
+                    data-count="{{ metrics.fraud_detected|default(metrics.fraud_transactions|default(0, true), true) }}"
+                >
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Suspicious transactions detected
+                </span>
+
+            </div>
+
+            <span class="card-arrow">↗</span>
+
+        </div>
+
+
+        <div
+            class="stat-card stat-green"
+            data-stat-card
+        >
+
+            <div class="stat-icon">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/secure.svg'
+                    ) }}"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    SECURE TRANSACTIONS
+                </span>
+
+                <strong
+                    data-count="{{ metrics.legitimate|default(metrics.legitimate_transactions|default(0, true), true) }}"
+                >
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Transactions cleared
+                </span>
+
+            </div>
+
+            <span class="card-arrow">↗</span>
+
+        </div>
+
+
+        <div
+            class="stat-card stat-orange"
+            data-stat-card
+        >
+
+            <div class="stat-icon">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/shield.svg'
+                    ) }}"
+                    alt=""
+                >
+
+            </div>
+
+            <div class="stat-content">
+
+                <span class="stat-label">
+                    SYSTEM STATUS
+                </span>
+
+                <strong class="status-text">
+                    {% if system_active %}
+                        ACTIVE
+                    {% else %}
+                        STANDBY
+                    {% endif %}
+                </strong>
+
+                <span class="stat-description">
+                    AI protection engine
+                </span>
+
+            </div>
+
+            <span class="card-arrow">↗</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INTELLIGENCE
+    ====================================================== -->
+
+    <section class="intelligence-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-label">
+                    FINANCIAL SECURITY INTELLIGENCE
+                </span>
+
+                <h2>
+                    One platform.
+                    <span>Complete transaction protection.</span>
+                </h2>
+
+                <p>
+                    FinGuard AI brings fraud prediction, anomaly detection
+                    and risk intelligence together in one secure environment.
+                </p>
+
+            </div>
+
+            <a
+                href="{{ url_for('about') }}"
+                class="section-link"
+            >
+                Explore Platform
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+        <!-- FEATURE SLIDER -->
+
+        <div class="feature-slider">
+
+            <button
+                class="slider-btn slider-prev"
+                type="button"
+                aria-label="Previous"
+            >
+                ←
+            </button>
+
+
+            <div class="feature-track">
+
+
+                <!-- CARD 1 -->
+
+                <article
+                    class="feature-card feature-active"
+                    data-feature-card
+                >
+
+                    <div class="feature-visual blue-visual">
+
+                        <div class="visual-number">
+                            01
+                        </div>
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='assets/illustrations/fraud_detection.svg'
+                            ) }}"
+                            alt="AI Fraud Detection"
+                        >
+
+                        <div class="visual-glow"></div>
+
+                    </div>
+
+                    <div class="feature-content">
+
+                        <span class="feature-number">
+                            01
+                        </span>
+
+                        <h3>
+                            AI Fraud Detection
+                        </h3>
+
+                        <p>
+                            Analyze transaction patterns and identify
+                            suspicious financial behavior using trained
+                            machine-learning models.
+                        </p>
+
+                        <a href="{{ url_for('prediction') }}">
+                            Run Prediction
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 2 -->
+
+                <article
+                    class="feature-card"
+                    data-feature-card
+                >
+
+                    <div class="feature-visual purple-visual">
+
+                        <div class="visual-number">
+                            02
+                        </div>
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='assets/illustrations/analytics_dashboard.svg'
+                            ) }}"
+                            alt="Risk Intelligence"
+                        >
+
+                        <div class="visual-glow"></div>
+
+                    </div>
+
+                    <div class="feature-content">
+
+                        <span class="feature-number">
+                            02
+                        </span>
+
+                        <h3>
+                            Risk Intelligence
+                        </h3>
+
+                        <p>
+                            Convert transaction signals into clear
+                            risk insights for faster security decisions.
+                        </p>
+
+                        <a href="{{ url_for('analytics') }}">
+                            View Analytics
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 3 -->
+
+                <article
+                    class="feature-card"
+                    data-feature-card
+                >
+
+                    <div class="feature-visual green-visual">
+
+                        <div class="visual-number">
+                            03
+                        </div>
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='assets/illustrations/secure_finance.svg'
+                            ) }}"
+                            alt="Secure Processing"
+                        >
+
+                        <div class="visual-glow"></div>
+
+                    </div>
+
+                    <div class="feature-content">
+
+                        <span class="feature-number">
+                            03
+                        </span>
+
+                        <h3>
+                            Secure Processing
+                        </h3>
+
+                        <p>
+                            Process transaction intelligence through
+                            a protected financial security environment.
+                        </p>
+
+                        <a href="{{ url_for('transaction') }}">
+                            Analyze Activity
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <button
+                class="slider-btn slider-next"
+                type="button"
+                aria-label="Next"
+            >
+                →
+            </button>
+
+        </div>
+
+
+        <div class="slider-dots">
+
+            <button
+                class="slider-dot active"
+                data-slide="0"
+                type="button"
+            ></button>
+
+            <button
+                class="slider-dot"
+                data-slide="1"
+                type="button"
+            ></button>
+
+            <button
+                class="slider-dot"
+                data-slide="2"
+                type="button"
+            ></button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         PRODUCT PREVIEW
+    ====================================================== -->
+
+    <section class="preview-section">
+
+        <div class="preview-copy">
+
+            <span class="section-label">
+                SECURITY OPERATIONS CENTER
+            </span>
+
+            <h2>
+                See your financial
+                <span>security at a glance.</span>
+            </h2>
+
+            <p>
+                Monitor fraud signals, transaction activity and
+                risk intelligence through the FinGuard AI workspace.
+            </p>
+
+
+            <div class="preview-points">
+
+                <div>
+                    <span>01</span>
+                    <strong>Transaction Monitoring</strong>
+                </div>
+
+                <div>
+                    <span>02</span>
+                    <strong>Risk Assessment</strong>
+                </div>
+
+                <div>
+                    <span>03</span>
+                    <strong>Security Analytics</strong>
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="preview-button"
+            >
+                Open Dashboard
+                <span>→</span>
+            </a>
+
+        </div>
+
+
+        <div class="preview-images">
+
+            <div class="preview-image-main">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/dashboard_preview.png'
+                    ) }}"
+                    alt="FinGuard AI Dashboard"
+                >
+
+                <div class="preview-tag">
+                    LIVE DASHBOARD
+                </div>
+
+            </div>
+
+
+            <div class="preview-image-secondary">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/dashboard_preview_2.png'
+                    ) }}"
+                    alt="FinGuard AI Analytics"
+                >
+
+                <div class="preview-tag">
+                    AI ANALYTICS
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECURITY ENGINE
+    ====================================================== -->
+
+    <section class="engine-section">
+
+        <div class="engine-main">
+
+            <div class="engine-icon">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/shield.svg'
+                    ) }}"
+                    alt=""
+                >
+
+            </div>
+
+            <div>
+
+                <span class="section-label">
+                    FINGUARD AI SECURITY ENGINE
+                </span>
+
+                <h3>
+                    Your financial environment is protected.
+                </h3>
+
+                <p>
+                    Machine-learning fraud detection and anomaly
+                    intelligence are ready for transaction analysis.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="engine-status">
+
+            <span class="engine-status-dot"></span>
+
+            <div>
+
+                <strong>
+                    {% if system_active %}
+                        System Operational
+                    {% else %}
+                        System Standby
+                    {% endif %}
+                </strong>
+
+                <span>
+                    Model:
+                    {% if model_loaded %}
+                        Ready
+                    {% else %}
+                        Unavailable
+                    {% endif %}
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DEVELOPER
+    ====================================================== -->
+
+    <section class="developer-section">
+
+        <div class="developer-content">
+
+            <div class="developer-avatar">
+                MVH
+            </div>
+
+            <div>
+
+                <span>
+                    PROJECT DEVELOPED BY
+                </span>
+
+                <strong>
+                    Mohammed Viquar Hyder
+                </strong>
+
+                <p>
+                    AI Engineer · Machine Learning · Financial Security
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="developer-version">
+
+            <span>
+                FinGuard AI
+            </span>
+
+            <strong>
+                v{{ app_version }}
+            </strong>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =========================================================
+     HOME PAGE CSS
+     Direct include avoids base.html block mismatch.
+========================================================== -->
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/home.css') }}?v=50"
+>
+
+
+<!-- =========================================================
+     HOME PAGE JS
+========================================================== -->
+
+<script
+    src="{{ url_for('static', filename='js/home.js') }}?v=50"
+></script>
+
+{% endblock %}

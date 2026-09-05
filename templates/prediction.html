@@ -1,0 +1,1163 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction | FinGuard AI{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/prediction.css') }}?v=30">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="fg-prediction-page">
+
+    <div class="fg-prediction-container">
+
+        <!-- =====================================================
+             TOP HERO
+        ====================================================== -->
+
+        <section class="fg-hero">
+
+            <div class="fg-hero-content">
+
+                <div class="fg-eyebrow">
+                    <span class="fg-eyebrow-dot"></span>
+                    FINANCIAL SECURITY INTELLIGENCE
+                </div>
+
+                <h1>
+                    AI Transaction
+                    <span>Risk Prediction</span>
+                </h1>
+
+                <p>
+                    Evaluate transaction behavior with FinGuard AI's
+                    fraud detection and anomaly intelligence engine.
+                </p>
+
+                <div class="fg-hero-features">
+
+                    <div>
+                        <span class="fg-check">✓</span>
+                        Fraud Detection
+                    </div>
+
+                    <div>
+                        <span class="fg-check">✓</span>
+                        Anomaly Intelligence
+                    </div>
+
+                    <div>
+                        <span class="fg-check">✓</span>
+                        Real-Time Risk Scoring
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="fg-hero-visual">
+
+                <div class="fg-hero-orbit orbit-one"></div>
+                <div class="fg-hero-orbit orbit-two"></div>
+
+                <div class="fg-hero-shield">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/shield.svg'
+                        ) }}"
+                        alt=""
+                    >
+
+                </div>
+
+                <div class="fg-floating-card fraud-card">
+                    <span class="floating-icon">◆</span>
+                    <div>
+                        <strong>Fraud Detection</strong>
+                        <small>Identify fraudulent transactions</small>
+                    </div>
+                </div>
+
+                <div class="fg-floating-card anomaly-card">
+                    <span class="floating-icon">⌁</span>
+                    <div>
+                        <strong>Anomaly Intelligence</strong>
+                        <small>Detect unusual patterns</small>
+                    </div>
+                </div>
+
+                <div class="fg-floating-card scoring-card">
+                    <span class="floating-icon">ϟ</span>
+                    <div>
+                        <strong>Real-Time Risk Scoring</strong>
+                        <small>Instant security assessment</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             MAIN TWO COLUMN AREA
+        ====================================================== -->
+
+        <div class="fg-main-grid">
+
+
+            <!-- =================================================
+                 LEFT INPUT PANEL
+            ================================================== -->
+
+            <section class="fg-input-panel">
+
+                <div class="fg-panel-header">
+
+                    <div class="fg-panel-title">
+
+                        <div class="fg-panel-icon">
+                            ✎
+                        </div>
+
+                        <div>
+
+                            <span>
+                                TRANSACTION INPUT
+                            </span>
+
+                            <h2>
+                                Analyze a Transaction
+                            </h2>
+
+                            <p>
+                                Enter the key transaction details.
+                                Advanced model signals are optional.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="fg-ready-badge">
+
+                        <span></span>
+                        READY
+
+                    </div>
+
+                </div>
+
+
+                {% if error %}
+
+                <div class="fg-error">
+
+                    <strong>!</strong>
+
+                    <span>
+                        {{ error }}
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                <form
+                    method="POST"
+                    action="{{ url_for('prediction') }}"
+                    class="fg-prediction-form"
+                >
+
+
+                    <!-- =========================================
+                         CORE DATA
+                    ========================================== -->
+
+                    <div class="fg-section">
+
+                        <div class="fg-section-heading">
+
+                            <div class="fg-section-number">
+                                01
+                            </div>
+
+                            <div>
+
+                                <span>CORE TRANSACTION DETAILS</span>
+
+                                <h3>
+                                    Transaction Details
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="fg-core-grid">
+
+
+                            <!-- TIME -->
+
+                            <div class="fg-field">
+
+                                <div class="fg-field-label">
+
+                                    <label>
+                                        Transaction Time
+                                    </label>
+
+                                    <button
+                                        type="button"
+                                        class="fg-help"
+                                        data-help="Enter the transaction timestamp value used by your dataset."
+                                    >
+                                        ?
+                                    </button>
+
+                                </div>
+
+
+                                <div class="fg-input-box">
+
+                                    <span class="fg-input-symbol">
+                                        TIME
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        step="any"
+                                        name="Time"
+                                        data-core-time
+                                        placeholder="Enter transaction time"
+                                        value="{{ request.form.get('Time', request.form.get('time', '')) }}"
+                                    >
+
+                                    <span class="fg-input-status">
+                                        ✓
+                                    </span>
+
+                                </div>
+
+                                <small>
+                                    Dataset timestamp value
+                                </small>
+
+                            </div>
+
+
+
+                            <!-- AMOUNT -->
+
+                            <div class="fg-field">
+
+                                <div class="fg-field-label">
+
+                                    <label>
+                                        Transaction Amount (₹)
+                                    </label>
+
+                                    <button
+                                        type="button"
+                                        class="fg-help"
+                                        data-help="Enter the actual transaction amount in Indian Rupees."
+                                    >
+                                        ?
+                                    </button>
+
+                                </div>
+
+
+                                <div class="fg-input-box amount-input">
+
+                                    <span class="fg-input-symbol currency">
+                                        ₹
+                                    </span>
+
+                                    <input
+                                        type="number"
+                                        step="any"
+                                        name="Amount"
+                                        data-core-amount
+                                        placeholder="Enter transaction amount"
+                                        value="{{ request.form.get('Amount', request.form.get('amount', '')) }}"
+                                    >
+
+                                    <span class="fg-input-status">
+                                        ✓
+                                    </span>
+
+                                </div>
+
+                                <small>
+                                    Typical example: ₹500 – ₹50,000
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- QUICK AMOUNTS -->
+
+                        <div class="fg-quick-row">
+
+                            <strong>
+                                ⚡ Quick Amount Reference
+                            </strong>
+
+                            <div class="fg-amount-buttons">
+
+                                <button type="button" data-amount="500">
+                                    ₹500
+                                </button>
+
+                                <button type="button" data-amount="1000">
+                                    ₹1,000
+                                </button>
+
+                                <button type="button" data-amount="5000">
+                                    ₹5,000
+                                </button>
+
+                                <button type="button" data-amount="10000">
+                                    ₹10,000
+                                </button>
+
+                                <button type="button" data-amount="50000">
+                                    ₹50,000
+                                </button>
+
+                                <button type="button" data-amount="100000">
+                                    ₹1,00,000
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         ADVANCED MODEL INPUTS
+                    ========================================== -->
+
+                    <details class="fg-advanced" id="advancedInputs">
+
+                        <summary>
+
+                            <div class="fg-advanced-left">
+
+                                <div class="fg-advanced-icon">
+                                    ⚙
+                                </div>
+
+                                <div>
+
+                                    <span>
+                                        OPTIONAL
+                                    </span>
+
+                                    <strong>
+                                        Advanced Model Inputs
+                                    </strong>
+
+                                    <small>
+                                        V1–V28 & engineered security signals
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="fg-advanced-right">
+
+                                <span class="fg-feature-count">
+                                    {{ feature_names|length }} FEATURES
+                                </span>
+
+                                <span class="fg-chevron">
+                                   ⌄
+                                </span>
+
+                            </div>
+
+                        </summary>
+
+
+                        <div class="fg-advanced-body">
+
+
+                            <!-- =================================
+                                 MODEL SIGNALS
+                            ================================== -->
+
+                            <div class="fg-subsection-header">
+
+                                <div>
+
+                                    <span>
+                                        02 / MODEL SIGNALS
+                                    </span>
+
+                                    <h3>
+                                        Transaction Model Features
+                                    </h3>
+
+                                </div>
+
+                                <b>
+                                    PCA / MODEL
+                                </b>
+
+                            </div>
+
+
+                            <div class="fg-feature-grid">
+
+                                {% for feature in feature_names | default([]) %}
+
+                                    {% set f = feature|lower|replace(" ", "_") %}
+
+                                    {% if f not in [
+                                        "amount",
+                                        "transaction_amount",
+                                        "transaction_amount_",
+                                        "time",
+                                        "transaction_time",
+                                        "timestamp"
+                                    ] %}
+
+                                    <div class="fg-advanced-field">
+
+                                        <div class="fg-advanced-label">
+
+                                            <label for="feature_{{ loop.index }}">
+                                                {{ feature
+                                                    .replace("_", " ")
+                                                    .title()
+                                                }}
+                                            </label>
+
+                                            <button
+                                                type="button"
+                                                class="fg-help"
+                                                data-help="Enter the processed {{ feature }} value generated by the FinGuard AI preprocessing pipeline."
+                                            >
+                                                ?
+                                            </button>
+
+                                        </div>
+
+
+                                        <input
+                                            type="number"
+                                            step="any"
+                                            id="feature_{{ loop.index }}"
+                                            name="{{ feature }}"
+                                            placeholder="Processed {{ feature }}"
+                                            value="{{ request.form.get(feature, '') }}"
+                                        >
+
+                                        <small>
+                                            ● Processed model value
+                                        </small>
+
+                                    </div>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+
+
+                            <div class="fg-warning">
+
+                                <span>
+                                    ⚠
+                                </span>
+
+                                <strong>
+                                    Don't know the V values?
+                                </strong>
+
+                                <p>
+                                    Don't guess them. Use the corresponding
+                                    processed values generated by the
+                                    FinGuard AI preprocessing pipeline.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </details>
+
+
+
+                    <!-- =========================================
+                         PROCESSING NOTE
+                    ========================================== -->
+
+                    <div class="fg-processing-note">
+
+                        <div class="fg-processing-icon">
+                            🛡
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Secure AI Processing
+                            </strong>
+
+                            <span>
+                                Transaction values are processed through
+                                the configured FinGuard AI prediction pipeline.
+                            </span>
+
+                        </div>
+
+                        <b>
+                            SECURE
+                        </b>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         ACTIONS
+                    ========================================== -->
+
+                    <div class="fg-actions">
+
+                        <button
+                            type="submit"
+                            class="fg-analyze-button"
+                            {% if not feature_names %}disabled{% endif %}
+                        >
+
+                            <span class="fg-button-icon">
+                                ▶
+                            </span>
+
+                            <span class="fg-button-text">
+
+                                <strong>
+                                    Analyze Transaction
+                                </strong>
+
+                                <small>
+                                    Run FinGuard AI Security Engine
+                                </small>
+
+                            </span>
+
+                            <span class="fg-button-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <a
+                            href="{{ url_for('prediction') }}"
+                            class="fg-reset-button"
+                        >
+
+                            <span>
+                                ⟳
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Reset All
+                                </strong>
+
+                                <small>
+                                    Clear all fields
+                                </small>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RIGHT RESULT PANEL
+            ================================================== -->
+
+            <section class="fg-result-panel">
+
+                <div class="fg-result-header">
+
+                    <div>
+
+                        <span>
+                            AI SECURITY ASSESSMENT
+                        </span>
+
+                        <h2>
+                            Prediction Result
+                        </h2>
+
+                        <p>
+                            Real-time transaction risk intelligence.
+                        </p>
+
+                    </div>
+
+
+                    <div class="fg-live-badge">
+
+                        <span></span>
+                        LIVE
+
+                    </div>
+
+                </div>
+
+
+                {% if result %}
+
+
+                <!-- =============================================
+                     RESULT HERO
+                ============================================== -->
+
+                <div class="
+                    fg-result-hero
+                    {{ result.risk_class }}
+                ">
+
+
+                    <!-- RISK GAUGE -->
+
+                    <div
+                        class="fg-risk-gauge"
+                        data-risk-score="{{ result.risk_score }}"
+                    >
+
+                        <div class="fg-risk-gauge-inner">
+
+                            <strong class="fg-risk-number">
+                                {{ result.risk_score }}
+                            </strong>
+
+                            <span>
+                                /100
+                            </span>
+
+                            <small>
+                                Risk Score
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- RISK INFORMATION -->
+
+                    <div class="fg-risk-information">
+
+                        <div class="fg-risk-status-icon">
+
+                            {% if result.risk_level == "High" %}
+
+                                ⚠
+
+                            {% elif result.risk_level == "Medium" %}
+
+                                !
+
+                            {% else %}
+
+                                ✓
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="fg-risk-label">
+                                RISK LEVEL
+                            </span>
+
+                            <strong>
+                                {{ result.risk_level }} RISK
+                            </strong>
+
+                            {% if result.risk_level == "High" %}
+
+                            <h3>
+                                Immediate Attention
+                            </h3>
+
+                            <p>
+                                Strong risk indicators detected.
+                            </p>
+
+                            {% elif result.risk_level == "Medium" %}
+
+                            <h3>
+                                Additional Review
+                            </h3>
+
+                            <p>
+                                Verification is recommended.
+                            </p>
+
+                            {% else %}
+
+                            <h3>
+                                Transaction Secure
+                            </h3>
+
+                            <p>
+                                No significant risk indicators detected.
+                            </p>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     RESULT METRICS
+                ============================================== -->
+
+                <div class="fg-result-metrics">
+
+
+                    <div class="fg-result-metric blue">
+
+                        <div class="fg-metric-top">
+
+                            <span class="fg-metric-icon">
+                                $
+                            </span>
+
+                            <span>
+                                Fraud Probability
+                            </span>
+
+                        </div>
+
+                        <strong
+                            data-fraud-probability="{{ result.fraud_probability }}"
+                        >
+                            {{ "%.2f"|format(result.fraud_probability) }}%
+                        </strong>
+
+                        <div class="fg-mini-bar">
+
+                            <span
+                                data-probability-fill
+                            ></span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="fg-result-metric purple">
+
+                        <div class="fg-metric-top">
+
+                            <span class="fg-metric-icon">
+                                ◈
+                            </span>
+
+                            <span>
+                                Anomaly Status
+                            </span>
+
+                        </div>
+
+                        <strong>
+
+                            {% if result.anomaly_prediction == -1 %}
+                                Anomaly
+                            {% elif result.anomaly_prediction == 1 %}
+                                Normal
+                            {% else %}
+                                —
+                            {% endif %}
+
+                        </strong>
+
+                        <small>
+                            AI behavioral engine
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="fg-result-metric green">
+
+                        <div class="fg-metric-top">
+
+                            <span class="fg-metric-icon">
+                                ₹
+                            </span>
+
+                            <span>
+                                Transaction Amount
+                            </span>
+
+                        </div>
+
+                        <strong>
+                            ₹{{ "{:,.2f}".format(result.amount) }}
+                        </strong>
+
+                        <small>
+                            Transaction value
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     DECISION
+                ============================================== -->
+
+                <div class="
+                    fg-decision
+                    {{ result.risk_class }}
+                ">
+
+                    <div class="fg-decision-icon">
+
+                        {% if result.risk_level == "High" %}
+                            ⚠
+                        {% elif result.risk_level == "Medium" %}
+                            !
+                        {% else %}
+                            ✓
+                        {% endif %}
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            RECOMMENDED DECISION
+                        </span>
+
+                        <strong>
+                            {{ result.decision }}
+                        </strong>
+
+                        {% if result.risk_level == "High" %}
+
+                        <p>
+                            Investigate the transaction before approval.
+                        </p>
+
+                        {% elif result.risk_level == "Medium" %}
+
+                        <p>
+                            Additional verification is recommended.
+                        </p>
+
+                        {% else %}
+
+                        <p>
+                            Transaction can proceed under normal monitoring.
+                        </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =============================================
+                     MODEL STATUS
+                ============================================== -->
+
+                <div class="fg-model-status">
+
+                    <div>
+
+                        <span class="status-model-icon fraud">
+                            🛡
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Fraud Model
+                            </strong>
+
+                            <small>
+                                {% if result.model_available %}
+                                    Model Available
+                                {% else %}
+                                    Fallback Mode
+                                {% endif %}
+                            </small>
+
+                        </div>
+
+                        <b class="
+                            {% if result.model_available %}
+                                online
+                            {% else %}
+                                fallback
+                            {% endif %}
+                        ">
+
+                            <span></span>
+
+                            {% if result.model_available %}
+                                ONLINE
+                            {% else %}
+                                FALLBACK
+                            {% endif %}
+
+                        </b>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <span class="status-model-icon anomaly">
+                            ✦
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Anomaly Engine
+                            </strong>
+
+                            <small>
+                                {% if result.anomaly_available %}
+                                    Engine Available
+                                {% else %}
+                                    Engine Unavailable
+                                {% endif %}
+                            </small>
+
+                        </div>
+
+                        <b class="
+                            {% if result.anomaly_available %}
+                                online
+                            {% else %}
+                                offline
+                            {% endif %}
+                        ">
+
+                            <span></span>
+
+                            {% if result.anomaly_available %}
+                                ONLINE
+                            {% else %}
+                                OFFLINE
+                            {% endif %}
+
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+
+                {% else %}
+
+
+                <!-- =============================================
+                     EMPTY RESULT
+                ============================================== -->
+
+                <div class="fg-empty-result">
+
+                    <div class="fg-empty-orbit">
+
+                        <div class="fg-empty-shield">
+                            🛡
+                        </div>
+
+                    </div>
+
+                    <span>
+                        AI ENGINE READY
+                    </span>
+
+                    <h3>
+                        Awaiting Transaction Analysis
+                    </h3>
+
+                    <p>
+                        Enter the transaction amount and time,
+                        then launch the FinGuard AI Security Engine
+                        to generate the risk assessment.
+                    </p>
+
+
+                    <div class="fg-empty-steps">
+
+                        <div>
+
+                            <b>01</b>
+
+                            <span>
+                                <strong>
+                                    Enter transaction details
+                                </strong>
+                                Amount & Time
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <b>02</b>
+
+                            <span>
+                                <strong>
+                                    Run AI analysis
+                                </strong>
+                                Fraud & anomaly intelligence
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <b>03</b>
+
+                            <span>
+                                <strong>
+                                    Review risk decision
+                                </strong>
+                                Security score & recommendation
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="fg-engine-ready">
+
+                        <span></span>
+                        FinGuard AI Security Engine Ready
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             SECURITY FOOTER
+        ====================================================== -->
+
+        <div class="fg-security-footer">
+
+            <div class="fg-security-left">
+
+                <div class="fg-security-icon">
+                    🛡
+                </div>
+
+                <div>
+
+                    <strong>
+                        FinGuard AI Security Engine
+                    </strong>
+
+                    <p>
+                        Fraud probability, anomaly indicators and risk
+                        intelligence are generated through the configured
+                        FinGuard AI prediction pipeline.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="fg-protected-badge">
+
+                <span></span>
+                PROTECTED ENVIRONMENT
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/prediction.js'
+    ) }}?v=30">
+</script>
+
+{% endblock %}

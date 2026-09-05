@@ -1,0 +1,1048 @@
+{% extends "base.html" %}
+
+{% block title %}Transaction Monitor | FinGuard AI{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/transaction.css') }}?v=20"
+>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="transaction-page">
+
+    <div class="transaction-container">
+
+
+        <!-- =====================================================
+             PREMIUM PAGE HEADER
+             ===================================================== -->
+
+        <section class="transaction-header">
+
+            <div class="transaction-header-main">
+
+                <div class="transaction-eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    FINANCIAL SECURITY INTELLIGENCE
+                </div>
+
+
+                <h1>
+                    Transaction
+                    <span>Monitor</span>
+                </h1>
+
+
+                <p>
+                    Monitor financial transaction activity,
+                    identify suspicious behavior and investigate
+                    transaction-level security signals.
+                </p>
+
+
+                <div class="transaction-header-features">
+
+                    <span>
+                        <b>✓</b>
+                        Fraud Detection
+                    </span>
+
+                    <span>
+                        <b>✓</b>
+                        Risk Intelligence
+                    </span>
+
+                    <span>
+                        <b>✓</b>
+                        Transaction Analysis
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="transaction-header-actions">
+
+                <div class="transaction-live-status">
+
+                    <span></span>
+
+                    <div>
+                        <strong>
+                            Monitoring Active
+                        </strong>
+
+                        <small>
+                            Security engine online
+                        </small>
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('prediction') }}"
+                    class="transaction-analyze-btn"
+                >
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/analytics.svg'
+                        ) }}"
+                        alt=""
+                    >
+
+                    <span>
+                        Analyze Transaction
+                    </span>
+
+                    <b>→</b>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SECURITY SUMMARY
+             ===================================================== -->
+
+        <section class="transaction-summary-grid">
+
+
+            <!-- TOTAL -->
+
+            <article
+                class="transaction-summary-card total"
+            >
+
+                <div class="transaction-summary-top">
+
+                    <div class="transaction-summary-icon blue">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <span class="transaction-card-label">
+                        TRANSACTION VOLUME
+                    </span>
+
+                </div>
+
+
+                <div class="transaction-summary-content">
+
+                    <span>
+                        Total Transactions
+                    </span>
+
+                    <strong>
+                        {{ "{:,}".format(
+                            metrics.total_transactions
+                        ) }}
+                    </strong>
+
+                </div>
+
+
+                <div class="transaction-summary-footer">
+
+                    <span class="summary-status blue-status">
+                        <i></i>
+                        Dataset Records
+                    </span>
+
+                    <span class="summary-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- FRAUD -->
+
+            <article
+                class="transaction-summary-card fraud"
+            >
+
+                <div class="transaction-summary-top">
+
+                    <div class="transaction-summary-icon red">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/fraud.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <span class="transaction-card-label">
+                        SECURITY ALERT
+                    </span>
+
+                </div>
+
+
+                <div class="transaction-summary-content">
+
+                    <span>
+                        Fraud Detected
+                    </span>
+
+                    <strong class="danger-text">
+
+                        {{ "{:,}".format(
+                            metrics.fraud_transactions
+                        ) }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="transaction-summary-footer">
+
+                    <span class="summary-status red-status">
+                        <i></i>
+                        Suspicious Records
+                    </span>
+
+                    <span class="summary-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- LEGITIMATE -->
+
+            <article
+                class="transaction-summary-card legitimate"
+            >
+
+                <div class="transaction-summary-top">
+
+                    <div class="transaction-summary-icon green">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/secure.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <span class="transaction-card-label">
+                        SECURE ACTIVITY
+                    </span>
+
+                </div>
+
+
+                <div class="transaction-summary-content">
+
+                    <span>
+                        Legitimate
+                    </span>
+
+                    <strong class="success-text">
+
+                        {{ "{:,}".format(
+                            metrics.legitimate_transactions
+                        ) }}
+
+                    </strong>
+
+                </div>
+
+
+                <div class="transaction-summary-footer">
+
+                    <span class="summary-status green-status">
+                        <i></i>
+                        Verified Activity
+                    </span>
+
+                    <span class="summary-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- FRAUD RATE -->
+
+            <article
+                class="transaction-summary-card rate"
+            >
+
+                <div class="transaction-summary-top">
+
+                    <div class="transaction-summary-icon purple">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+                    <span class="transaction-card-label">
+                        RISK INDICATOR
+                    </span>
+
+                </div>
+
+
+                <div class="transaction-summary-content">
+
+                    <span>
+                        Fraud Rate
+                    </span>
+
+                    <strong>
+                        {{ "%.2f"|format(
+                            metrics.fraud_rate
+                        ) }}%
+                    </strong>
+
+                </div>
+
+
+                <div class="transaction-summary-footer">
+
+                    <span class="summary-status purple-status">
+                        <i></i>
+                        Risk Intelligence
+                    </span>
+
+                    <span class="summary-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             TRANSACTION INTELLIGENCE CARD
+             ===================================================== -->
+
+        <section class="transaction-table-card">
+
+
+            <!-- =================================================
+                 CARD HEADER
+                 ================================================= -->
+
+            <div class="transaction-toolbar">
+
+
+                <div class="transaction-toolbar-title">
+
+                    <div class="transaction-section-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="transaction-card-kicker">
+                            TRANSACTION INTELLIGENCE
+                        </span>
+
+                        <h2>
+                            Transaction Records
+                        </h2>
+
+                        <p>
+                            Search, filter and investigate
+                            available financial transaction activity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOOLBAR CONTROLS -->
+
+                <div class="transaction-toolbar-controls">
+
+
+                    <!-- SEARCH -->
+
+                    <div class="transaction-search">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/search.svg'
+                            ) }}"
+                            alt=""
+                            onerror="this.style.display='none'"
+                        >
+
+
+                        <input
+                            type="search"
+                            placeholder="Search transaction ID, status..."
+                            aria-label="Search transactions"
+                            data-transaction-search="[data-transaction-row]"
+                        >
+
+
+                        <kbd>
+                            /
+                        </kbd>
+
+                    </div>
+
+
+
+                    <!-- FILTER -->
+
+                    <select
+                        class="transaction-filter"
+                        aria-label="Filter transactions"
+                        data-transaction-filter="[data-transaction-row]"
+                    >
+
+                        <option value="all">
+                            All Transactions
+                        </option>
+
+                        <option value="legitimate">
+                            Legitimate
+                        </option>
+
+                        <option value="fraud">
+                            Fraud
+                        </option>
+
+                        <option value="low">
+                            Low Risk
+                        </option>
+
+                        <option value="high">
+                            High Risk
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABLE META
+                 ================================================= -->
+
+            <div class="transaction-table-meta">
+
+
+                <div class="transaction-record-count">
+
+                    <span class="meta-live-dot"></span>
+
+                    <span>
+                        Showing
+                    </span>
+
+                    <strong
+                        data-transaction-count
+                    >
+                        {{ metrics.recent_transactions|length }}
+                    </strong>
+
+                    <span>
+                        records
+                    </span>
+
+                </div>
+
+
+                <div class="transaction-dataset-status">
+
+                    <span>
+                        <i></i>
+                        Dataset monitoring active
+                    </span>
+
+                    <span class="meta-divider"></span>
+
+                    <span>
+                        FinGuard AI Engine
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABLE
+                 ================================================= -->
+
+            {% if metrics.recent_transactions %}
+
+
+            <div class="transaction-table-wrapper">
+
+                <table class="transaction-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                <span>
+                                    Transaction
+                                </span>
+                            </th>
+
+
+                            <th>
+                                <span>
+                                    Amount
+                                </span>
+                            </th>
+
+
+                            <th>
+                                <span>
+                                    Status
+                                </span>
+                            </th>
+
+
+                            <th>
+                                <span>
+                                    Risk Level
+                                </span>
+                            </th>
+
+
+                            <th>
+                                <span>
+                                    Action
+                                </span>
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+
+                    <tbody>
+
+
+                        {% for transaction in metrics.recent_transactions %}
+
+
+                        <tr
+                            data-transaction-row
+                            data-risk="{{ transaction.risk|lower }}"
+                            data-status="{{ transaction.status|lower }}"
+                        >
+
+
+                            <!-- =================================
+                                 TRANSACTION ID
+                                 ================================= -->
+
+                            <td>
+
+                                <div class="transaction-id-cell">
+
+
+                                    <div
+                                        class="transaction-id-icon"
+                                    >
+
+                                        <img
+                                            src="{{ url_for(
+                                                'static',
+                                                filename='icons/analytics.svg'
+                                            ) }}"
+                                            alt=""
+                                        >
+
+                                    </div>
+
+
+                                    <div class="transaction-id-info">
+
+                                        <strong>
+                                            {{ transaction.id }}
+                                        </strong>
+
+                                        <span>
+                                            Transaction record
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+
+                            </td>
+
+
+
+                            <!-- =================================
+                                 AMOUNT
+                                 ================================= -->
+
+                            <td>
+
+                                <div class="transaction-amount-cell">
+
+                                    <span class="amount-currency">
+                                        ₹
+                                    </span>
+
+                                    <span class="transaction-amount">
+
+                                        {{ "{:,.2f}".format(
+                                            transaction.amount
+                                        ) }}
+
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+
+
+                            <!-- =================================
+                                 STATUS
+                                 ================================= -->
+
+                            <td>
+
+
+                                {% if transaction.status == "Fraud" %}
+
+
+                                <span
+                                    class="transaction-status danger"
+                                >
+
+                                    <i></i>
+
+                                    <span>
+                                        Fraud Detected
+                                    </span>
+
+                                </span>
+
+
+                                {% else %}
+
+
+                                <span
+                                    class="transaction-status success"
+                                >
+
+                                    <i></i>
+
+                                    <span>
+                                        Legitimate
+                                    </span>
+
+                                </span>
+
+
+                                {% endif %}
+
+
+                            </td>
+
+
+
+                            <!-- =================================
+                                 RISK
+                                 ================================= -->
+
+                            <td>
+
+
+                                {% if transaction.risk == "High" %}
+
+
+                                <span
+                                    class="transaction-risk high"
+                                >
+
+                                    <span class="risk-icon">
+                                        !
+                                    </span>
+
+                                    High Risk
+
+                                </span>
+
+
+                                {% else %}
+
+
+                                <span
+                                    class="transaction-risk low"
+                                >
+
+                                    <span class="risk-icon">
+                                        ✓
+                                    </span>
+
+                                    Low Risk
+
+                                </span>
+
+
+                                {% endif %}
+
+
+                            </td>
+
+
+
+                            <!-- =================================
+                                 ACTION
+                                 ================================= -->
+
+                            <td>
+
+                                <a
+                                    href="{{ url_for('prediction') }}"
+                                    class="transaction-view-btn"
+                                    title="Analyze transaction"
+                                >
+
+                                    <span>
+                                        Analyze
+                                    </span>
+
+                                    <b>
+                                        →
+                                    </b>
+
+                                </a>
+
+                            </td>
+
+
+                        </tr>
+
+
+                        {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PAGINATION
+                 ================================================= -->
+
+            <div
+                class="transaction-pagination"
+                data-transaction-pagination
+                data-page-size="8"
+            >
+
+
+                <div class="pagination-left">
+
+                    <span>
+                        Transaction records
+                    </span>
+
+                </div>
+
+
+                <div class="pagination-right">
+
+
+                    <button
+                        type="button"
+                        class="transaction-page-btn arrow"
+                        data-page-prev
+                        aria-label="Previous page"
+                    >
+                        ←
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="transaction-page-btn active"
+                        data-page="1"
+                    >
+                        1
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="transaction-page-btn arrow"
+                        data-page-next
+                        aria-label="Next page"
+                    >
+                        →
+                    </button>
+
+
+                    <span
+                        class="transaction-page-info"
+                        data-page-info
+                    >
+                        Page 1
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% else %}
+
+
+            <!-- =================================================
+                 EMPTY DATA STATE
+                 ================================================= -->
+
+            <div class="transaction-empty">
+
+
+                <div class="transaction-empty-icon">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/analytics.svg'
+                        ) }}"
+                        alt=""
+                    >
+
+                </div>
+
+
+                <span class="transaction-empty-kicker">
+                    NO TRANSACTION DATA
+                </span>
+
+
+                <h3>
+                    No Transactions Available
+                </h3>
+
+
+                <p>
+                    No processed transaction records were found
+                    in the currently configured FinGuard AI dataset.
+                </p>
+
+
+                <a
+                    href="{{ url_for('prediction') }}"
+                    class="transaction-empty-btn"
+                >
+
+                    Analyze New Transaction
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SECURITY ENGINE FOOTER
+             ===================================================== -->
+
+        <section class="transaction-security">
+
+
+            <div class="transaction-security-icon">
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/shield.svg'
+                    ) }}"
+                    alt=""
+                >
+
+            </div>
+
+
+            <div class="transaction-security-content">
+
+                <div class="security-title-row">
+
+                    <strong>
+                        FinGuard AI Monitoring Engine
+                    </strong>
+
+                    <span class="security-badge">
+                        AI PROTECTED
+                    </span>
+
+                </div>
+
+
+                <p>
+                    Transaction records are processed through
+                    the configured FinGuard AI detection and
+                    security intelligence pipeline.
+                </p>
+
+            </div>
+
+
+            <div class="transaction-security-status">
+
+                <span></span>
+
+                <div>
+
+                    <strong>
+                        System Operational
+                    </strong>
+
+                    <small>
+                        All security services active
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PAGE FOOTER
+             ===================================================== -->
+
+        <div class="transaction-page-footer">
+
+            <span>
+                FinGuard AI Security Intelligence
+            </span>
+
+            <span>
+                Protected Environment
+            </span>
+
+            <span>
+                •
+            </span>
+
+            <span>
+                Real-Time Monitoring
+            </span>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/transaction.js'
+    ) }}?v=20"
+></script>
+
+{% endblock %}

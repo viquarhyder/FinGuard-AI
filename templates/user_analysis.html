@@ -1,0 +1,1619 @@
+{% extends "base.html" %}
+
+{% block title %}User Analysis | FinGuard AI{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/user_analysis.css') }}?v=21"
+>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+{# =========================================================
+   SAFE BACKEND VALUES
+   ========================================================= #}
+
+{% set safe_total_users = total_users|default(0, true)|int %}
+{% set safe_high_risk = high_risk|default(0, true)|int %}
+{% set safe_medium_risk = medium_risk|default(0, true)|int %}
+{% set safe_low_risk = low_risk|default(0, true)|int %}
+{% set safe_avg_risk = avg_risk|default(0, true)|float %}
+
+
+<div class="user-analysis-page">
+
+    <div class="user-analysis-container">
+
+
+        <!-- =====================================================
+             PREMIUM HERO
+        ====================================================== -->
+
+        <section class="ua-hero">
+
+
+            <div class="ua-hero-glow ua-hero-glow-one"></div>
+
+            <div class="ua-hero-glow ua-hero-glow-two"></div>
+
+
+            <div class="ua-hero-content">
+
+
+                <div class="ua-hero-label">
+
+                    <span class="ua-hero-label-dot"></span>
+
+                    BEHAVIORAL INTELLIGENCE
+
+                    <span class="ua-hero-live">
+                        LIVE
+                    </span>
+
+                </div>
+
+
+
+                <h1>
+                    User Analysis
+                </h1>
+
+
+
+                <p>
+                    Examine user activity, behavioral signals and
+                    transaction risk indicators across the monitored
+                    environment.
+                </p>
+
+
+
+                <div class="ua-hero-features">
+
+
+                    <span>
+                        <i></i>
+                        Behavioral Monitoring
+                    </span>
+
+
+                    <span>
+                        <i></i>
+                        Risk Intelligence
+                    </span>
+
+
+                    <span>
+                        <i></i>
+                        Security Analytics
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- HERO STATUS -->
+
+            <div class="ua-hero-status">
+
+
+                <div class="ua-status-orbit">
+
+
+                    <div class="ua-orbit-ring ring-one"></div>
+
+                    <div class="ua-orbit-ring ring-two"></div>
+
+
+                    <div class="ua-orbit-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt="Security"
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="ua-hero-status-text">
+
+                    <span>
+                        ANALYSIS ENGINE
+                    </span>
+
+
+                    <strong>
+                        Active
+                    </strong>
+
+
+                    <small>
+                        Continuous monitoring enabled
+                    </small>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             KPI GRID
+        ====================================================== -->
+
+        <section class="ua-kpi-grid">
+
+
+            <!-- TOTAL USERS -->
+
+            <article
+                class="ua-kpi-card ua-kpi-blue"
+                data-kpi-card="total"
+                tabindex="0"
+                role="button"
+                aria-label="Show all users"
+            >
+
+
+                <div class="ua-kpi-top">
+
+
+                    <div class="ua-kpi-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/analytics.svg'
+                            ) }}"
+                            alt=""
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+
+                    <span class="ua-kpi-index">
+                        01
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="ua-kpi-content">
+
+
+                    <span class="ua-kpi-label">
+                        TOTAL USERS
+                    </span>
+
+
+                    <strong>
+                        {{ "{:,}".format(safe_total_users) }}
+                    </strong>
+
+
+                    <small>
+                        Monitored accounts
+                    </small>
+
+
+                </div>
+
+
+
+                <div class="ua-kpi-footer">
+
+
+                    <span>
+                        User population
+                    </span>
+
+
+                    <span class="ua-kpi-arrow">
+                        →
+                    </span>
+
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- HIGH RISK -->
+
+            <article
+                class="ua-kpi-card ua-kpi-red"
+                data-kpi-card="high"
+                tabindex="0"
+                role="button"
+                aria-label="Show high risk users"
+            >
+
+
+                <div class="ua-kpi-top">
+
+
+                    <div class="ua-kpi-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/fraud.svg'
+                            ) }}"
+                            alt=""
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+
+                    <span class="ua-kpi-index">
+                        02
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="ua-kpi-content">
+
+
+                    <span class="ua-kpi-label">
+                        HIGH RISK USERS
+                    </span>
+
+
+                    <strong class="danger">
+                        {{ "{:,}".format(safe_high_risk) }}
+                    </strong>
+
+
+                    <small>
+                        Requires attention
+                    </small>
+
+
+                </div>
+
+
+
+                <div class="ua-kpi-footer">
+
+
+                    <span>
+                        Security alerts
+                    </span>
+
+
+                    <span class="ua-kpi-arrow">
+                        →
+                    </span>
+
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- MEDIUM RISK -->
+
+            <article
+                class="ua-kpi-card ua-kpi-orange"
+                data-kpi-card="medium"
+                tabindex="0"
+                role="button"
+                aria-label="Show medium risk users"
+            >
+
+
+                <div class="ua-kpi-top">
+
+
+                    <div class="ua-kpi-icon">
+
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/warning.svg'
+                            ) }}"
+                            alt=""
+                            onerror="this.style.display='none'"
+                        >
+
+
+                        <span
+                            class="ua-fallback-icon"
+                            aria-hidden="true"
+                        >
+                            !
+                        </span>
+
+
+                    </div>
+
+
+                    <span class="ua-kpi-index">
+                        03
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="ua-kpi-content">
+
+
+                    <span class="ua-kpi-label">
+                        MEDIUM RISK
+                    </span>
+
+
+                    <strong class="warning">
+                        {{ "{:,}".format(safe_medium_risk) }}
+                    </strong>
+
+
+                    <small>
+                        Under observation
+                    </small>
+
+
+                </div>
+
+
+
+                <div class="ua-kpi-footer">
+
+
+                    <span>
+                        Review signals
+                    </span>
+
+
+                    <span class="ua-kpi-arrow">
+                        →
+                    </span>
+
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- LOW RISK -->
+
+            <article
+                class="ua-kpi-card ua-kpi-green"
+                data-kpi-card="low"
+                tabindex="0"
+                role="button"
+                aria-label="Show low risk users"
+            >
+
+
+                <div class="ua-kpi-top">
+
+
+                    <div class="ua-kpi-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/secure.svg'
+                            ) }}"
+                            alt=""
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+
+                    <span class="ua-kpi-index">
+                        04
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="ua-kpi-content">
+
+
+                    <span class="ua-kpi-label">
+                        LOW RISK USERS
+                    </span>
+
+
+                    <strong class="success">
+                        {{ "{:,}".format(safe_low_risk) }}
+                    </strong>
+
+
+                    <small>
+                        Secure activity
+                    </small>
+
+
+                </div>
+
+
+
+                <div class="ua-kpi-footer">
+
+
+                    <span>
+                        Protected users
+                    </span>
+
+
+                    <span class="ua-kpi-arrow">
+                        →
+                    </span>
+
+
+                </div>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             MAIN INTELLIGENCE GRID
+        ====================================================== -->
+
+        <section class="ua-main-grid">
+
+
+            <!-- =================================================
+                 RISK DISTRIBUTION
+            ================================================== -->
+
+            <article class="ua-card ua-risk-card">
+
+
+                <div class="ua-card-accent ua-accent-risk"></div>
+
+
+                <div class="ua-card-header">
+
+
+                    <div>
+
+
+                        <div class="ua-kicker-row">
+
+
+                            <span class="ua-kicker-icon risk-icon">
+
+                                <img
+                                    src="{{ url_for(
+                                        'static',
+                                        filename='icons/fraud.svg'
+                                    ) }}"
+                                    alt=""
+                                    onerror="this.style.display='none'"
+                                >
+
+                            </span>
+
+
+                            <span class="ua-kicker">
+                                RISK DISTRIBUTION
+                            </span>
+
+
+                        </div>
+
+
+
+                        <h2>
+                            User Risk Overview
+                        </h2>
+
+
+
+                        <p>
+                            Current distribution of monitored users
+                            by security risk level.
+                        </p>
+
+
+                    </div>
+
+
+
+                    <div class="ua-card-badge risk-badge">
+
+                        <span></span>
+
+                        LIVE
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- RISK CONTENT -->
+
+                <div class="ua-risk-content">
+
+
+                    <!-- RISK RING -->
+
+                    <div
+                        class="ua-risk-ring"
+                        data-high="{{ safe_high_risk }}"
+                        data-medium="{{ safe_medium_risk }}"
+                        data-low="{{ safe_low_risk }}"
+                        data-total="{{ safe_total_users }}"
+                        style="
+                            --high: {{ safe_high_risk }};
+                            --medium: {{ safe_medium_risk }};
+                            --low: {{ safe_low_risk }};
+                        "
+                    >
+
+
+                        <div class="ua-ring-inner">
+
+
+                            <div class="ua-ring-shield">
+
+                                <img
+                                    src="{{ url_for(
+                                        'static',
+                                        filename='icons/shield.svg'
+                                    ) }}"
+                                    alt=""
+                                    onerror="this.style.display='none'"
+                                >
+
+                            </div>
+
+
+                            <strong>
+                                {{ "{:,}".format(safe_total_users) }}
+                            </strong>
+
+
+                            <span>
+                                MONITORED USERS
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- RISK LEGEND -->
+
+                    <div class="ua-risk-legend">
+
+
+                        <!-- HIGH -->
+
+                        <div
+                            class="ua-legend-item ua-legend-high"
+                            data-risk-select="high"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Filter high risk users"
+                        >
+
+
+                            <span
+                                class="ua-legend-dot high"
+                            ></span>
+
+
+                            <div>
+
+
+                                <strong>
+                                    High Risk
+                                </strong>
+
+
+                                <small>
+                                    {{ "{:,}".format(safe_high_risk) }}
+                                    users
+                                </small>
+
+
+                            </div>
+
+
+                            <span class="ua-legend-arrow">
+                                →
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- MEDIUM -->
+
+                        <div
+                            class="ua-legend-item ua-legend-medium"
+                            data-risk-select="medium"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Filter medium risk users"
+                        >
+
+
+                            <span
+                                class="ua-legend-dot medium"
+                            ></span>
+
+
+                            <div>
+
+
+                                <strong>
+                                    Medium Risk
+                                </strong>
+
+
+                                <small>
+                                    {{ "{:,}".format(safe_medium_risk) }}
+                                    users
+                                </small>
+
+
+                            </div>
+
+
+                            <span class="ua-legend-arrow">
+                                →
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- LOW -->
+
+                        <div
+                            class="ua-legend-item ua-legend-low"
+                            data-risk-select="low"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Filter low risk users"
+                        >
+
+
+                            <span
+                                class="ua-legend-dot low"
+                            ></span>
+
+
+                            <div>
+
+
+                                <strong>
+                                    Low Risk
+                                </strong>
+
+
+                                <small>
+                                    {{ "{:,}".format(safe_low_risk) }}
+                                    users
+                                </small>
+
+
+                            </div>
+
+
+                            <span class="ua-legend-arrow">
+                                →
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- COVERAGE -->
+
+                <div class="ua-card-bottom">
+
+
+                    <div>
+
+
+                        <span>
+                            SECURITY COVERAGE
+                        </span>
+
+
+                        <strong>
+                            100%
+                        </strong>
+
+
+                    </div>
+
+
+                    <div class="ua-mini-progress">
+
+                        <span
+                            style="width:100%;"
+                        ></span>
+
+                    </div>
+
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- =================================================
+                 SECURITY SCORE
+            ================================================== -->
+
+            <article class="ua-card ua-score-card">
+
+
+                <div class="ua-card-accent ua-accent-score"></div>
+
+
+                <div class="ua-score-background">
+
+                    <div class="ua-score-orb orb-one"></div>
+
+                    <div class="ua-score-orb orb-two"></div>
+
+                </div>
+
+
+
+                <div class="ua-card-header">
+
+
+                    <div>
+
+
+                        <div class="ua-kicker-row">
+
+
+                            <span class="ua-kicker-icon score-icon">
+
+                                <img
+                                    src="{{ url_for(
+                                        'static',
+                                        filename='icons/shield.svg'
+                                    ) }}"
+                                    alt=""
+                                    onerror="this.style.display='none'"
+                                >
+
+                            </span>
+
+
+                            <span class="ua-kicker">
+                                SECURITY SCORE
+                            </span>
+
+
+                        </div>
+
+
+
+                        <h2>
+                            Environment Health
+                        </h2>
+
+
+
+                        <p>
+                            Aggregate risk signal across monitored
+                            user activity.
+                        </p>
+
+
+                    </div>
+
+
+
+                    <div class="ua-score-status">
+
+                        <span></span>
+
+                        PROTECTED
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- SCORE -->
+
+                <div class="ua-score-panel">
+
+
+                    <div class="ua-score-number">
+
+
+                        <strong>
+                            {{ "%.1f"|format(safe_avg_risk) }}
+                        </strong>
+
+
+                        <span>
+                            AVG RISK SCORE
+                        </span>
+
+
+                    </div>
+
+
+
+                    <div class="ua-score-meter">
+
+
+                        <div
+                            class="ua-score-meter-fill"
+                            data-score="{{ safe_avg_risk }}"
+                            style="
+                                width:
+                                {{
+                                    [
+                                        [safe_avg_risk, 0]|max,
+                                        100
+                                    ]|min
+                                }}%;
+                            "
+                        ></div>
+
+
+                    </div>
+
+
+
+                    <div class="ua-score-labels">
+
+
+                        <span>
+
+                            <i class="low"></i>
+
+                            0 — Low
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="review"></i>
+
+                            50 — Review
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="critical"></i>
+
+                            100 — Critical
+
+                        </span>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- SECURITY NOTE -->
+
+                <div class="ua-security-note">
+
+
+                    <div class="ua-note-icon">
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='icons/shield.svg'
+                            ) }}"
+                            alt=""
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+
+                        <strong>
+                            Risk monitoring enabled
+                        </strong>
+
+
+                        <p>
+                            Behavioral signals are continuously
+                            evaluated by the FinGuard AI detection
+                            pipeline.
+                        </p>
+
+
+                    </div>
+
+
+                    <span class="ua-note-check">
+                        ✓
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- ENGINE FOOTER -->
+
+                <div class="ua-score-footer">
+
+
+                    <span>
+                        ENGINE STATUS
+                    </span>
+
+
+                    <strong>
+                        Operational
+                    </strong>
+
+
+                </div>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             MONITORED USERS
+        ====================================================== -->
+
+        <section class="ua-card ua-table-card">
+
+
+            <div class="ua-table-top-line"></div>
+
+
+
+            <!-- TABLE HEADER -->
+
+            <div class="ua-card-header ua-table-header">
+
+
+                <div>
+
+
+                    <div class="ua-kicker-row">
+
+
+                        <span class="ua-kicker-icon users-icon">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/analytics.svg'
+                                ) }}"
+                                alt=""
+                                onerror="this.style.display='none'"
+                            >
+
+                        </span>
+
+
+                        <span class="ua-kicker">
+                            USER INTELLIGENCE
+                        </span>
+
+
+                    </div>
+
+
+
+                    <h2>
+                        Monitored Users
+                    </h2>
+
+
+
+                    <p>
+                        Review user-level risk indicators generated
+                        by the FinGuard AI analysis pipeline.
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- CONTROLS -->
+
+                <div class="ua-controls">
+
+
+                    <!-- SEARCH -->
+
+                    <div class="ua-search">
+
+
+                        <span class="ua-search-icon">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='icons/search.svg'
+                                ) }}"
+                                alt=""
+                                onerror="this.style.display='none'"
+                            >
+
+                        </span>
+
+
+                        <input
+                            type="search"
+                            placeholder="Search users..."
+                            data-user-search
+                            aria-label="Search users"
+                            autocomplete="off"
+                        >
+
+
+                    </div>
+
+
+
+                    <!-- FILTER -->
+
+                    <select
+                        class="ua-filter"
+                        data-user-filter
+                        aria-label="Filter users"
+                    >
+
+                        <option value="all">
+                            All Risk Levels
+                        </option>
+
+                        <option value="high">
+                            High Risk
+                        </option>
+
+                        <option value="medium">
+                            Medium Risk
+                        </option>
+
+                        <option value="low">
+                            Low Risk
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            {% if users %}
+
+
+            <!-- =================================================
+                 TABLE META
+            ================================================== -->
+
+            <div class="ua-table-meta">
+
+
+                <span>
+
+                    <strong data-user-count>
+                        {{ users|length }}
+                    </strong>
+
+                    monitored records
+
+                </span>
+
+
+                <span class="ua-table-live">
+
+                    <i></i>
+
+                    LIVE DATA
+
+                </span>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABLE
+            ================================================== -->
+
+            <div class="ua-table-wrapper">
+
+
+                <table class="ua-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                User
+                            </th>
+
+                            <th>
+                                Risk Score
+                            </th>
+
+                            <th>
+                                Risk Level
+                            </th>
+
+                            <th>
+                                Activity
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+
+                    <tbody>
+
+
+                        {% for user in users %}
+
+
+                        {% set current_user_id =
+                            user.user_id|
+                            default(
+                                user.username|
+                                default('Unknown User', true),
+                                true
+                            )
+                        %}
+
+
+                        {% set current_risk =
+                            user.risk_level|
+                            default('low', true)|
+                            lower
+                        %}
+
+
+                        {% set current_score =
+                            user.risk_score|
+                            default(0, true)|
+                            float
+                        %}
+
+
+                        <tr
+                            data-user-row
+                            data-risk="{{ current_risk }}"
+                            data-user="{{ current_user_id|lower }}"
+                        >
+
+
+                            <!-- USER -->
+
+                            <td>
+
+
+                                <div class="ua-user-cell">
+
+
+                                    <div class="ua-avatar">
+
+
+                                        <span>
+
+                                            {{
+                                                (
+                                                    current_user_id|
+                                                    string
+                                                )[0]|
+                                                upper
+                                            }}
+
+                                        </span>
+
+
+                                        <i></i>
+
+
+                                    </div>
+
+
+
+                                    <div class="ua-user-info">
+
+
+                                        <strong>
+                                            {{ current_user_id }}
+                                        </strong>
+
+
+                                        <span>
+                                            Monitored account
+                                        </span>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </td>
+
+
+
+                            <!-- SCORE -->
+
+                            <td>
+
+
+                                <div class="ua-score-cell">
+
+
+                                    <div class="ua-score-value">
+
+
+                                        <strong>
+                                            {{ "%.1f"|format(
+                                                current_score
+                                            ) }}
+                                        </strong>
+
+
+                                        <span>
+                                            / 100
+                                        </span>
+
+
+                                    </div>
+
+
+
+                                    <div class="ua-user-progress">
+
+
+                                        <span
+                                            style="
+                                                width:
+                                                {{
+                                                    [
+                                                        [current_score, 0]|max,
+                                                        100
+                                                    ]|min
+                                                }}%;
+                                            "
+                                        ></span>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </td>
+
+
+
+                            <!-- RISK -->
+
+                            <td>
+
+
+                                <span
+                                    class="
+                                        ua-risk-badge
+                                        {{ current_risk }}
+                                    "
+                                >
+
+
+                                    <i></i>
+
+
+                                    {{ current_risk|title }}
+
+
+                                </span>
+
+
+                            </td>
+
+
+
+                            <!-- ACTIVITY -->
+
+                            <td>
+
+
+                                <span class="ua-activity">
+
+
+                                    <i></i>
+
+
+                                    {{ user.activity|default(
+                                        "Normal",
+                                        true
+                                    ) }}
+
+
+                                </span>
+
+
+                            </td>
+
+
+
+                            <!-- STATUS -->
+
+                            <td>
+
+
+                                <span class="ua-status">
+
+
+                                    <i></i>
+
+
+                                    Monitored
+
+
+                                </span>
+
+
+                            </td>
+
+
+                        </tr>
+
+
+                        {% endfor %}
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TABLE FOOTER
+            ================================================== -->
+
+            <div class="ua-table-bottom">
+
+
+                <span>
+                    FinGuard AI behavioral monitoring engine
+                </span>
+
+
+                <span>
+                    Secure environment
+                </span>
+
+
+            </div>
+
+
+            {% else %}
+
+
+            <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+            <div class="ua-empty">
+
+
+                <div class="ua-empty-icon">
+
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='icons/analytics.svg'
+                        ) }}"
+                        alt=""
+                        onerror="this.style.display='none'"
+                    >
+
+
+                </div>
+
+
+
+                <h3>
+                    No User Records Available
+                </h3>
+
+
+
+                <p>
+                    User-level analysis data is not currently
+                    available in the configured dataset.
+                </p>
+
+
+            </div>
+
+
+            {% endif %}
+
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PREMIUM FOOTER STATUS
+        ====================================================== -->
+
+        <section class="ua-footer-status">
+
+
+            <div class="ua-footer-icon">
+
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='icons/shield.svg'
+                    ) }}"
+                    alt=""
+                    onerror="this.style.display='none'"
+                >
+
+
+            </div>
+
+
+
+            <div class="ua-footer-content">
+
+
+                <strong>
+                    FinGuard AI Behavioral Engine
+                </strong>
+
+
+                <p>
+                    User risk indicators are generated from the
+                    configured anomaly and fraud-detection pipeline.
+                </p>
+
+
+            </div>
+
+
+
+            <div class="ua-footer-operational">
+
+
+                <span></span>
+
+
+                System Operational
+
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script
+    src="{{ url_for(
+        'static',
+        filename='js/user_analysis.js'
+    ) }}?v=21"
+></script>
+
+{% endblock %}

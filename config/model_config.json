@@ -1,0 +1,94 @@
+{
+    "application": {
+        "name": "FinGuard AI",
+        "version": "1.0.0",
+        "task": "financial fraud detection and transaction risk assessment"
+    },
+    "deployment": {
+        "primary_fraud_model": "Models/fraud_model/xgboost_model.pkl",
+        "anomaly_model": "Models/anomaly_model/isolation_forest.pkl",
+        "scaler": "Models/preprocessing/scaler.pkl",
+        "explainability_directory": "Models/explainability"
+    },
+    "model": {
+        "algorithm": "XGBoost",
+        "problem_type": "binary_classification",
+        "target_column": "Class",
+        "positive_class": 1,
+        "negative_class": 0,
+        "supports_probability": true
+    },
+    "anomaly_detection": {
+        "algorithm": "Isolation Forest",
+        "normal_label": 1,
+        "anomaly_label": -1
+    },
+    "preprocessing": {
+        "scaler": "standard_scaler",
+        "numeric_only": true,
+        "missing_value_default": 0.0
+    },
+    "feature_names": [
+        "Time",
+        "V1",
+        "V2",
+        "V3",
+        "V4",
+        "V5",
+        "V6",
+        "V7",
+        "V8",
+        "V9",
+        "V10",
+        "V11",
+        "V12",
+        "V13",
+        "V14",
+        "V15",
+        "V16",
+        "V17",
+        "V18",
+        "V19",
+        "V20",
+        "V21",
+        "V22",
+        "V23",
+        "V24",
+        "V25",
+        "V26",
+        "V27",
+        "V28",
+        "Amount"
+    ],
+    "risk_engine": {
+        "low": {
+            "min": 0,
+            "max": 39.99,
+            "label": "Low",
+            "decision": "Transaction Appears Safe"
+        },
+        "medium": {
+            "min": 40,
+            "max": 74.99,
+            "label": "Medium",
+            "decision": "Review Required"
+        },
+        "high": {
+            "min": 75,
+            "max": 100,
+            "label": "High",
+            "decision": "Potential Fraud"
+        },
+        "fraud_probability_weight": 0.75,
+        "anomaly_signal_weight": 0.25,
+        "anomaly_risk_signal": 25
+    },
+    "ui": {
+        "currency": "USD",
+        "probability_decimals": 2,
+        "risk_score_decimals": 2,
+        "show_model_status": true,
+        "show_anomaly_status": true,
+        "show_feature_impact": true
+    }
+}

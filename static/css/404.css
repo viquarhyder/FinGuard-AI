@@ -1,0 +1,1054 @@
+/* =========================================================
+   FINGUARD AI
+   404 — PREMIUM SECURITY ERROR PAGE
+   ========================================================= */
+
+:root {
+    --fg-blue: #2563eb;
+    --fg-blue-dark: #1d4ed8;
+    --fg-cyan: #06b6d4;
+
+    --fg-navy: #07152d;
+    --fg-text: #0f172a;
+    --fg-muted: #64748b;
+    --fg-soft: #94a3b8;
+
+    --fg-border: #dce6f2;
+    --fg-border-soft: #e8eef6;
+
+    --fg-bg: #f6f9fd;
+    --fg-white: #ffffff;
+
+    --fg-green: #16a34a;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.fg404-page {
+    position: relative;
+
+    width: 100%;
+    min-height: calc(100vh - 70px);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 78% 18%,
+            rgba(37, 99, 235, .075),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 18% 78%,
+            rgba(6, 182, 212, .045),
+            transparent 28%
+        ),
+        var(--fg-bg);
+}
+
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.fg404-background {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+}
+
+
+.fg404-grid {
+    position: absolute;
+    inset: 0;
+
+    opacity: .32;
+
+    background-image:
+        linear-gradient(
+            rgba(37, 99, 235, .025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(37, 99, 235, .025) 1px,
+            transparent 1px
+        );
+
+    background-size: 38px 38px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 85%
+        );
+}
+
+
+.fg404-orb {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(1px);
+
+    border: 1px solid rgba(37, 99, 235, .07);
+}
+
+
+.fg404-orb-one {
+    width: 420px;
+    height: 420px;
+
+    right: -190px;
+    top: -190px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(37, 99, 235, .05),
+            transparent 68%
+        );
+}
+
+
+.fg404-orb-two {
+    width: 280px;
+    height: 280px;
+
+    left: -150px;
+    bottom: -150px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(6, 182, 212, .045),
+            transparent 68%
+        );
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.fg404-container {
+    position: relative;
+    z-index: 2;
+
+    width: min(
+        calc(100% - 60px),
+        1050px
+    );
+
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 44% 56%;
+
+    align-items: center;
+
+    border: 1px solid var(--fg-border);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.98),
+            rgba(248,251,255,.96)
+        );
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, .08),
+        0 5px 20px rgba(15, 23, 42, .035);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   VISUAL
+   ========================================================= */
+
+.fg404-visual {
+    position: relative;
+
+    min-height: 490px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(37, 99, 235, .075),
+            transparent 58%
+        );
+}
+
+
+.fg404-visual-glow {
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(37, 99, 235, .15),
+            rgba(6, 182, 212, .04),
+            transparent 70%
+        );
+
+    filter: blur(8px);
+}
+
+
+.fg404-orbit {
+    position: absolute;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(37, 99, 235, .13);
+
+    animation:
+        fg404Orbit 12s linear infinite;
+}
+
+
+.orbit-one {
+    width: 310px;
+    height: 310px;
+}
+
+
+.orbit-two {
+    width: 390px;
+    height: 390px;
+
+    border-color: rgba(6, 182, 212, .075);
+
+    animation-duration: 18s;
+    animation-direction: reverse;
+}
+
+
+@keyframes fg404Orbit {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   SHIELD
+   ========================================================= */
+
+.fg404-shield-wrap {
+    position: relative;
+
+    z-index: 5;
+
+    display: grid;
+    place-items: center;
+}
+
+
+.fg404-shield-pulse {
+    position: absolute;
+
+    width: 145px;
+    height: 145px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(37, 99, 235, .14);
+
+    animation:
+        fg404Pulse 2.8s ease-out infinite;
+}
+
+
+@keyframes fg404Pulse {
+
+    0% {
+        transform: scale(.75);
+        opacity: .8;
+    }
+
+    70% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.35);
+        opacity: 0;
+    }
+
+}
+
+
+.fg404-shield {
+    width: 120px;
+    height: 120px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 32px;
+
+    border: 1px solid #cfe0ff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eff6ff,
+            #ffffff
+        );
+
+    box-shadow:
+        0 25px 50px rgba(37, 99, 235, .14),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    transform:
+        rotate(-3deg);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.fg404-shield:hover {
+    transform:
+        rotate(0deg)
+        translateY(-4px);
+
+    box-shadow:
+        0 30px 60px rgba(37, 99, 235, .20);
+}
+
+
+.fg404-shield img {
+    width: 62px;
+    height: 62px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   404 NUMBER
+   ========================================================= */
+
+.fg404-number {
+    position: absolute;
+
+    bottom: 38px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: rgba(37, 99, 235, .065);
+
+    font-size: 145px;
+    line-height: .8;
+
+    font-weight: 950;
+
+    letter-spacing: -.09em;
+
+    user-select: none;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SIGNAL
+   ========================================================= */
+
+.fg404-signal {
+    position: absolute;
+
+    left: 32px;
+    bottom: 35px;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+
+    opacity: .65;
+}
+
+
+.fg404-signal span {
+    width: 4px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            to top,
+            var(--fg-blue),
+            var(--fg-cyan)
+        );
+
+    animation:
+        fg404Signal 1.2s ease-in-out infinite;
+}
+
+
+.fg404-signal span:nth-child(1) {
+    height: 10px;
+}
+
+.fg404-signal span:nth-child(2) {
+    height: 18px;
+    animation-delay: .12s;
+}
+
+.fg404-signal span:nth-child(3) {
+    height: 28px;
+    animation-delay: .24s;
+}
+
+.fg404-signal span:nth-child(4) {
+    height: 20px;
+    animation-delay: .36s;
+}
+
+.fg404-signal span:nth-child(5) {
+    height: 34px;
+    animation-delay: .48s;
+}
+
+
+@keyframes fg404Signal {
+
+    50% {
+        transform: scaleY(.55);
+        opacity: .45;
+    }
+
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.fg404-content {
+    padding: 65px 64px 60px;
+
+    border-left: 1px solid var(--fg-border-soft);
+}
+
+
+.fg404-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 15px;
+
+    color: var(--fg-blue);
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: .13em;
+}
+
+
+.fg404-eyebrow-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--fg-green);
+
+    box-shadow:
+        0 0 0 4px rgba(22, 163, 74, .08);
+}
+
+
+.fg404-divider {
+    width: 24px;
+    height: 1px;
+
+    background: #cbd5e1;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.fg404-content h1 {
+    margin: 0;
+
+    color: var(--fg-text);
+
+    font-size: clamp(42px, 5vw, 62px);
+
+    line-height: .98;
+
+    font-weight: 950;
+
+    letter-spacing: -.055em;
+}
+
+
+.fg404-content h1 span {
+    display: block;
+
+    color: var(--fg-blue);
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.fg404-description {
+    max-width: 520px;
+
+    margin: 22px 0 0;
+
+    color: var(--fg-muted);
+
+    font-size: 13px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   INFORMATION CARDS
+   ========================================================= */
+
+.fg404-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+.fg404-info-card {
+    min-height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 12px;
+
+    border: 1px solid var(--fg-border);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.8);
+
+    transition:
+        border-color .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+
+.fg404-info-card:hover {
+    transform: translateY(-2px);
+
+    border-color: #c7d9f5;
+
+    box-shadow:
+        0 10px 25px rgba(15,23,42,.05);
+}
+
+
+.fg404-info-icon {
+    width: 37px;
+    height: 37px;
+
+    flex: 0 0 37px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: #effaf2;
+}
+
+
+.fg404-info-icon.blue {
+    background: #eff6ff;
+}
+
+
+.fg404-info-icon img {
+    width: 18px;
+    height: 18px;
+}
+
+
+.fg404-info-icon span {
+    color: var(--fg-blue);
+
+    font-size: 10px;
+
+    font-weight: 900;
+}
+
+
+.fg404-info-card strong {
+    display: block;
+
+    color: #334155;
+
+    font-size: 9px;
+
+    font-weight: 850;
+}
+
+
+.fg404-info-card span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+}
+
+
+.online-dot {
+    width: 7px;
+    height: 7px;
+
+    margin-left: auto;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 4px rgba(34,197,94,.09);
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.fg404-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+.fg404-primary,
+.fg404-secondary {
+    height: 43px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 0 18px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 850;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+
+.fg404-primary {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1689f5
+        );
+
+    box-shadow:
+        0 10px 25px rgba(37,99,235,.18);
+}
+
+
+.fg404-primary:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 32px rgba(37,99,235,.25);
+}
+
+
+.fg404-btn-icon {
+    font-size: 16px;
+
+    line-height: 1;
+}
+
+
+.fg404-secondary {
+    color: #475569;
+
+    border: 1px solid var(--fg-border);
+
+    background: white;
+}
+
+
+.fg404-secondary:hover {
+    color: var(--fg-blue);
+
+    border-color: #bcd2f5;
+
+    background: #f8fbff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.fg404-status {
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-top: 28px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #dcebe0;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fbfffc,
+            #f7fcf8
+        );
+}
+
+
+.fg404-status-icon {
+    width: 36px;
+    height: 36px;
+
+    flex: 0 0 36px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: #ecfdf3;
+}
+
+
+.fg404-status-icon img {
+    width: 18px;
+    height: 18px;
+}
+
+
+.fg404-status-text {
+    min-width: 0;
+}
+
+
+.fg404-status-text strong {
+    display: block;
+
+    color: #166534;
+
+    font-size: 9px;
+
+    font-weight: 850;
+}
+
+
+.fg404-status-text span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #86a58f;
+
+    font-size: 8px;
+}
+
+
+.fg404-status-live {
+    margin-left: auto;
+
+    white-space: nowrap;
+
+    color: #15803d;
+
+    font-size: 7px;
+
+    font-weight: 900;
+
+    letter-spacing: .08em;
+}
+
+
+.fg404-status-live i {
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 5px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 3px rgba(34,197,94,.08);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.fg404-footer {
+    position: relative;
+    z-index: 3;
+
+    width: min(
+        calc(100% - 60px),
+        1050px
+    );
+
+    margin: 0 auto 22px;
+
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
+
+    color: #94a3b8;
+
+    font-size: 8px;
+}
+
+
+.fg404-footer > div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+.fg404-footer-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .fg404-container {
+        grid-template-columns: 1fr;
+
+        width: min(
+            calc(100% - 32px),
+            650px
+        );
+    }
+
+    .fg404-visual {
+        min-height: 300px;
+    }
+
+    .fg404-content {
+        padding: 42px 34px 36px;
+
+        border-left: 0;
+
+        border-top: 1px solid var(--fg-border-soft);
+    }
+
+    .fg404-number {
+        font-size: 105px;
+    }
+
+    .fg404-footer {
+        width: calc(100% - 32px);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .fg404-page {
+        min-height: calc(100vh - 60px);
+    }
+
+    .fg404-container {
+        margin: 25px auto;
+    }
+
+    .fg404-visual {
+        min-height: 240px;
+    }
+
+    .fg404-shield {
+        width: 90px;
+        height: 90px;
+
+        border-radius: 24px;
+    }
+
+    .fg404-shield img {
+        width: 46px;
+        height: 46px;
+    }
+
+    .orbit-one {
+        width: 220px;
+        height: 220px;
+    }
+
+    .orbit-two {
+        width: 280px;
+        height: 280px;
+    }
+
+    .fg404-number {
+        font-size: 78px;
+
+        bottom: 24px;
+    }
+
+    .fg404-content {
+        padding: 32px 22px;
+    }
+
+    .fg404-content h1 {
+        font-size: 40px;
+    }
+
+    .fg404-description {
+        font-size: 11px;
+    }
+
+    .fg404-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fg404-actions {
+        flex-direction: column;
+    }
+
+    .fg404-primary,
+    .fg404-secondary {
+        width: 100%;
+    }
+
+    .fg404-status-live {
+        display: none;
+    }
+
+    .fg404-footer {
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        padding-bottom: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .fg404-orbit,
+    .fg404-shield-pulse,
+    .fg404-signal span {
+        animation: none;
+    }
+
+    .fg404-shield,
+    .fg404-info-card,
+    .fg404-primary,
+    .fg404-secondary {
+        transition: none;
+    }
+
+}
