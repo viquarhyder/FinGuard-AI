@@ -871,7 +871,6 @@ def build_dashboard_data():
     df = get_dataset()
 
     if df.empty:
-
         return {
             "total_transactions": 0,
             "fraud_transactions": 0,
@@ -897,242 +896,105 @@ def build_dashboard_data():
             "status": "Offline",
         }
 
-
-    # --------------------------------------------------------
-    # FRAUD
-    # --------------------------------------------------------
-
-    fraud_count, legitimate_count = (
-        get_fraud_counts(df)
-    )
+    # Avoid Pandas errors caused by duplicate column names.
+    df = df.loc[:, ~df.columns.duplicated()].copy()
 
     total = len(df)
 
-    fraud_rate = (
-        (fraud_count / total) * 100
-        if total
-        else 0
+    fraud_count, legitimate_count = get_fraud_counts(df)
+
+    fraud_rate = round(
+        (fraud_count / total) * 100 if total else 0,
+        2,
     )
 
+    # Limit expensive risk calculations to a representative sample.
+    sample_size = min(500, total)
+    risk_df = df.tail(sample_size)
 
-    # --------------------------------------------------------
-    # RISK
-    # --------------------------------------------------------
+    risk_scores = [
+        calculate_risk_score(row)
+        for _, row in risk_df.iterrows()
+    ]
 
-    risk_scores = []
+    average_risk = round(float(np.mean(risk_scores)), 2) if risk_scores else 0
 
-    for _, row in df.iterrows():
+    high_risk = sum(score >= 75 for score in risk_scores)
+    medium_risk = sum(40 <= score < 75 for score in risk_scores)
+    low_risk = sum(score < 40 for score in risk_scores)
 
-        score = calculate_risk_score(row)
-
-        risk_scores.append(score)
-
-
-    if risk_scores:
-
-        average_risk = round(
-            float(
-                np.mean(risk_scores)
-            ),
-            2,
-        )
-
-        high_risk = sum(
-            score >= 75
-            for score in risk_scores
-        )
-
-        medium_risk = sum(
-            40 <= score < 75
-            for score in risk_scores
-        )
-
-        low_risk = sum(
-            score < 40
-            for score in risk_scores
-        )
-
-    else:
-
-        average_risk = 0
-        high_risk = 0
-        medium_risk = 0
-        low_risk = 0
-
-
-    # --------------------------------------------------------
-    # RECENT TRANSACTIONS
-    # --------------------------------------------------------
-
-    recent_transactions = []
-
+    # Recent transactions
     amount_column = get_amount_column(df)
     time_column = get_time_column(df)
     id_column = get_transaction_id_column(df)
     target_column = get_target_column(df)
 
-    recent_df = (
-        df.tail(8)
-        .iloc[::-1]
-    )
-
+    recent_df = df.tail(8).iloc[::-1]
+    recent_transactions = []
 
     for index, row in recent_df.iterrows():
 
-        if id_column:
+        transaction_id = (
+            str(row[id_column])
+            if id_column
+            else f"TXN-{index + 1:05d}"
+        )
 
-            transaction_id = str(
-                row[id_column]
-            )
-
-        else:
-
-            transaction_id = (
-                f"TXN-{index + 1:05d}"
-            )
-
-
-        if amount_column:
-
-            amount_value = safe_float(
-                row[amount_column]
-            )
-
-            amount = round(
-                amount_value,
-                2,
-            )
-
-        else:
-
-            amount = None
-
+        amount = (
+            round(safe_float(row[amount_column]), 2)
+            if amount_column
+            else None
+        )
 
         score = calculate_risk_score(row)
 
-
         if target_column:
-
             status = (
                 "Fraud"
-                if is_fraud_value(
-                    row[target_column]
-                )
+                if is_fraud_value(row[target_column])
                 else "Legitimate"
             )
-
         else:
+            status = "Fraud" if score >= 75 else "Legitimate"
 
-            status = (
-                "Fraud"
-                if score >= 75
-                else "Legitimate"
-            )
+        time_value = row[time_column] if time_column else "—"
+        time_value = "—" if pd.isna(time_value) else str(time_value)
 
+        recent_transactions.append({
+            "id": transaction_id,
+            "time": time_value,
+            "amount": amount,
+            "risk_score": score,
+            "risk": get_risk_label(score),
+            "status": status,
+        })
 
-        if time_column:
-
-            time_value = row[time_column]
-
-            if pd.isna(time_value):
-                time_value = "—"
-            else:
-                time_value = str(
-                    time_value
-                )
-
-        else:
-
-            time_value = "—"
-
-
-        recent_transactions.append(
-            {
-                "id": transaction_id,
-                "time": time_value,
-                "amount": amount,
-                "risk_score": score,
-                "risk": get_risk_label(score),
-                "status": status,
-            }
-        )
-
-
-    model_status = (
-        "Active"
-        if APP_STATE["models_loaded"]
-        else "Offline"
-    )
-
+    model_status = "Active" if APP_STATE["models_loaded"] else "Offline"
 
     return {
-
         "total_transactions": total,
-
         "fraud_transactions": fraud_count,
-
-        # Homepage compatibility alias
         "fraud_detected": fraud_count,
-
-        "legitimate_transactions":
-            legitimate_count,
-
-        "fraud_rate":
-            round(fraud_rate, 2),
-
-        "high_risk":
-            high_risk,
-
-        "medium_risk":
-            medium_risk,
-
-        "low_risk":
-            low_risk,
-
-        "average_risk":
-            average_risk,
-
-        "model_status":
-            model_status,
-
-        "dataset_rows":
-            total,
-
-        "recent_transactions":
-            recent_transactions,
-
-        # Compatibility aliases
-        "total":
-            total,
-
-        "transactions":
-            total,
-
-        "fraud":
-            fraud_count,
-
-        "fraud_count":
-            fraud_count,
-
-        "legitimate":
-            legitimate_count,
-
-        "legitimate_count":
-            legitimate_count,
-
-        "fraud_percentage":
-            round(fraud_rate, 2),
-
-        "avg_risk":
-            average_risk,
-
-        "risk_score":
-            average_risk,
-
-        "status":
-            model_status,
+        "legitimate_transactions": legitimate_count,
+        "fraud_rate": fraud_rate,
+        "high_risk": high_risk,
+        "medium_risk": medium_risk,
+        "low_risk": low_risk,
+        "average_risk": average_risk,
+        "model_status": model_status,
+        "dataset_rows": total,
+        "recent_transactions": recent_transactions,
+        "total": total,
+        "transactions": total,
+        "fraud": fraud_count,
+        "fraud_count": fraud_count,
+        "legitimate": legitimate_count,
+        "legitimate_count": legitimate_count,
+        "fraud_percentage": fraud_rate,
+        "avg_risk": average_risk,
+        "risk_score": average_risk,
+        "status": model_status,
     }
-
 
 # ============================================================
 # CHART DATA
